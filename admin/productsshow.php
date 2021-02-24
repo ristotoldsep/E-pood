@@ -40,6 +40,10 @@ include("adminpartials/head.php");
                 <div class="row">
                     <div class="col-sm-9">
 
+                        <a href="products.php">
+                            <button style="color:green;">Add new</button><hr>
+                        </a>
+                        
                         <?php
                         //DB connection
                         include('../partials/connect.php');

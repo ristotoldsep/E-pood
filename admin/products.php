@@ -39,7 +39,9 @@ include("adminpartials/head.php");
 
                 <div class="row">
                     <div class="col-sm-3">
-
+                        <a href="productsshow.php">
+                            <button>Back</button>
+                        </a>
                     </div>
                     <div class="col-sm-6">
                         <!-- form start -->
