@@ -63,7 +63,7 @@ include("adminpartials/head.php");
 
                         <img src="<?php echo $final['picture']; ?>" alt="product_image" style="height:300px; width:300px;">
 
-
+                    
 
 
 
