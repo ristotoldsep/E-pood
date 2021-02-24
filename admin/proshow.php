@@ -44,11 +44,25 @@ include("adminpartials/head.php");
                         //DB connection
                         include('../partials/connect.php');
                         
+                        //Connected with productsshow.php
                         $id = $_GET['pro_id'];
                         $sql = "SELECT * FROM Products WHERE id='$id'";
 
                         $results = $connect->query($sql); 
-                        ?>
+
+                        $final = $results->fetch_assoc(); //Get associative array of the query results (all records from db)
+
+                        ?>  
+
+
+                        <h3>Name: <?php echo $final['name']; ?></h3><hr><br>
+
+                        <h3>Price: <?php echo $final['price']; ?></h3><hr><br>
+                        
+                        <h3>Description: <?php echo $final['description']; ?></h3><hr><br>
+
+                        <img src="<?php echo $final['picture']; ?>" alt="product_image" style="height:300px; width:300px;">
+
 
 
 
