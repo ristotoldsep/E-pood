@@ -10,7 +10,7 @@ if(isset($_POST['update'])) { //If update button (name="update") is clicked, upd
     $newcat = $_POST['category'];
 
     //Creating a path for uploaded images
-    $target = "../uploads/";
+    $target = "uploads/";
     //$file_path = $target . basename($_FILES['file']['name']);
     $file_name = $_FILES['file']['name'];
     $file_tmp = $_FILES['file']['tmp_name']; //Temporary file name

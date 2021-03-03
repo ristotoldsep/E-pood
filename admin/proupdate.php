@@ -67,7 +67,7 @@ include("adminpartials/head.php");
                                     <label for="price">Price</label>
                                     <input type="text" class="form-control" id="price" placeholder="Price" name="price" value="<?php echo $final['price']; ?>">
                                 </div>
-                                <img src="<?php echo $final['picture']; ?>" alt="image" style="width:200px;height:200px;">
+                                <img src="../<?php echo $final['picture']; ?>" alt="image" style="width:200px;height:200px;">
                                 <div class="form-group">
                                     <label for="picture">Image</label>
                                     <input type="file" id="picture" name="file" value="<?php echo $final['picture']; ?>" </div>

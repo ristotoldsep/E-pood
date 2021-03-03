@@ -61,7 +61,7 @@ include("adminpartials/head.php");
                         
                         <h3>Description: <?php echo $final['description']; ?></h3><hr><br>
 
-                        <img src="<?php echo $final['picture']; ?>" alt="product_image" style="height:300px; width:300px;">
+                        <img src="../<?php echo $final['picture']; ?>" alt="product_image" style="height:300px; width:300px;">
 
 
 

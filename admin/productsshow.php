@@ -54,7 +54,7 @@ include("adminpartials/head.php");
                         while ($final = $results->fetch_assoc()) { ?>
 
                             <a href="proshow.php?pro_id=<?php echo $final['id']; ?>">
-                                <img src="<?php echo $final['picture']; ?>" alt="product_image" style="heigth:70px; width:70px;">
+                                <img src="../<?php echo $final['picture']; ?>" alt="product_image" style="heigth:70px; width:70px;">
                                 <h3><?php echo $final['id']; ?>: <?php echo $final['name']; ?></h3>
                                 <br>
                             </a>
