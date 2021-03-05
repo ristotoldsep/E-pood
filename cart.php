@@ -45,11 +45,12 @@ include("partials/head.php");
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">Product</th>
-									<th class="column-2">Name</th>
+									<th class="column-5">Name</th>
 									<th class="column-3">Price</th>
-									<th class="column-4">Quantity</th>
-									<th class="column-5">Total</th>
+									<th class="column-5">Quantity</th>
 									<th class="column-5"></th>
+									<th class="column-3">Total</th>
+									<th class="column-4"></th>
 								</tr>
 								<?php
 
@@ -72,6 +73,8 @@ include("partials/head.php");
 											<td class="column-2"><?php echo $value['item_name']; ?></td>
 											<td class="column-3"><?php echo $value['item_price']; ?> €</td>
 											<td class="column-4">
+
+											<form action="cartupdate.php" method="POST">
 												<div class="wrap-num-product flex-w m-l-auto m-r-0">
 													<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 														<i class="fs-16 zmdi zmdi-minus"></i>
@@ -84,10 +87,16 @@ include("partials/head.php");
 													</div>
 												</div>
 											</td>
-											<td class="column-5"><?php echo $value['item_price']; ?> €</td>
 											<td class="column-5">
+												<button class="btn btn-sm btn-outline-success" name="update"><i class="zmdi zmdi-check"></i></button>
+													<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
+												</form>
+											</td>
+											<td class="column-3"><?php echo $value['item_price']; //QUANTITY * PRICE ?> €</td>
+											<td class="column-3">
 												<form action="cartremove.php" method="POST">
-													<button class="btn btn-sm btn-outline-danger"><i class="zmdi zmdi-delete"></i></button>
+													<button class="btn btn-sm btn-outline-danger" name="remove"><i class="zmdi zmdi-delete"></i></button>
+													<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
 												</form>
 											</td>
 										</tr>
