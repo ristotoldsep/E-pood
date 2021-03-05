@@ -60,7 +60,7 @@ include("partials/head.php");
 
 									foreach ($_SESSION['cart'] as $key => $value) {
 
-										$total += $value['item_price'];
+										$total += $value['item_price'] * $value['quantity'];
 
 								?>
 
@@ -80,7 +80,7 @@ include("partials/head.php");
 														<i class="fs-16 zmdi zmdi-minus"></i>
 													</div>
 
-													<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product1" value="<?php echo $value['quantity']; ?>">
+													<input name="quantity" class="mtext-104 cl3 txt-center num-product" type="number" value="<?php echo $value['quantity']; ?>">
 
 													<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 														<i class="fs-16 zmdi zmdi-plus"></i>
@@ -92,7 +92,7 @@ include("partials/head.php");
 													<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
 												</form>
 											</td>
-											<td class="column-3"><?php echo $value['item_price']; //QUANTITY * PRICE ?> €</td>
+											<td class="column-3"><?php echo $value['item_price'] * $value['quantity']; //QUANTITY * PRICE ?> €</td>
 											<td class="column-3">
 												<form action="cartremove.php" method="POST">
 													<button class="btn btn-sm btn-outline-danger" name="remove"><i class="zmdi zmdi-delete"></i></button>
@@ -117,9 +117,9 @@ include("partials/head.php");
 								</div>
 							</div>
 
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+							<!-- <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 								Update Cart
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
