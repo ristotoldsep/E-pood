@@ -13,24 +13,28 @@ if (isset($_SESSION['cart'])) { //If session variable cart is already made (1 pr
         window.location.href='details.php?details_id=". $_GET['cart_id'] . "';
 
         </script>";
-    }
+    } else {
+        $count = count($_SESSION['cart']); //Count the items in the cart
 
-    $count = count($_SESSION['cart']); //Count the items in the cart
+        $_SESSION['cart'][$count] = array(
+            'item_id' => $_GET['cart_id'],
+            'item_name' => $_GET['cart_name'],
+            'item_price' => $_GET['cart_price'],
+            'item_picture' => $_GET['cart_picture'],
+            'quantity' => 1
+        );
 
-    $_SESSION['cart'][$count] = array(
-        'item_id' => $_GET['cart_id'],
-        'item_name' => $_GET['cart_name'],
-        'item_price' => $_GET['cart_price']
-    );
-
-    echo "<script>
-    window.location.href='product.php';
-    </script>";
+        echo "<script>
+        window.location.href='product.php';
+        </script>";
+    } 
 } else { //if cart session is not yet made (cart is empty), add the new product on index 0 in array
     $_SESSION['cart'][0] = array(
         'item_id' => $_GET['cart_id'],
         'item_name' => $_GET['cart_name'],
-        'item_price' => $_GET['cart_price']
+        'item_price' => $_GET['cart_price'],
+        'item_picture' => $_GET['cart_picture'],
+        'quantity' => 1
     );
     
     echo "<script>
@@ -40,4 +44,4 @@ if (isset($_SESSION['cart'])) { //If session variable cart is already made (1 pr
 
 //print_r($_SESSION['cart']);
 
-//session_destroy();
+// session_destroy();
