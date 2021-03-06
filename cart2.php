@@ -7,6 +7,9 @@
 	if (!isset($_SESSION)) {
 		session_start();
 	} 
+	
+//If not logged in, redirect to login page
+include ("./handler/customersession.php");
 
 include ("partials/head.php");
 
@@ -31,7 +34,7 @@ include ("partials/head.php");
 			</a>
 
 			<span class="stext-109 cl4">
-				Shoping Cart
+				Shopping Cart
 			</span>
 		</div>
 	</div> -->
@@ -76,25 +79,26 @@ include ("partials/head.php");
 											<td class="column-3"><?php echo $value['item_price']; ?> €</td>
 											<td class="column-4">
 
-											<form action="cartupdate.php" method="POST">
-												<div class="wrap-num-product flex-w m-l-auto m-r-0">
-													<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-														<i class="fs-16 zmdi zmdi-minus"></i>
-													</div>
+												<form action="cartupdate.php" method="POST">
+													<div class="wrap-num-product flex-w m-l-auto m-r-0">
+														<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+															<i class="fs-16 zmdi zmdi-minus"></i>
+														</div>
 
-													<input name="quantity" class="mtext-104 cl3 txt-center num-product" type="number" value="<?php echo $value['quantity']; ?>">
+														<input name="quantity" class="mtext-104 cl3 txt-center num-product" type="number" value="<?php echo $value['quantity']; ?>">
 
-													<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-														<i class="fs-16 zmdi zmdi-plus"></i>
+														<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+															<i class="fs-16 zmdi zmdi-plus"></i>
+														</div>
 													</div>
-												</div>
 											</td>
 											<td class="column-5">
 												<button class="btn btn-sm btn-outline-success" name="update"><i class="zmdi zmdi-check"></i></button>
-													<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
+												<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
 												</form>
 											</td>
-											<td class="column-3"><?php echo $value['item_price'] * $value['quantity']; //QUANTITY * PRICE ?> €</td>
+											<td class="column-3"><?php echo $value['item_price'] * $value['quantity']; //QUANTITY * PRICE 
+																	?> €</td>
 											<td class="column-3">
 												<form action="cartremove.php" method="POST">
 													<button class="btn btn-sm btn-outline-danger" name="remove"><i class="zmdi zmdi-delete"></i></button>
@@ -129,13 +133,13 @@ include ("partials/head.php");
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
-							Cart Totals
+							Ostukorv kokku
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
 							<div class="size-208">
 								<span class="stext-110 cl2">
-									Subtotal:
+									Kokku:
 								</span>
 							</div>
 
@@ -146,10 +150,70 @@ include ("partials/head.php");
 							</div>
 						</div>
 
+						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
+							<div class="size-208 w-full-ssm">
+								<span class="stext-110 cl2">
+									Transport:
+								</span>
+							</div>
 
-						<button onclick="location.href='cart2.php'" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							Proceed to Checkout
+							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
+								<p class="stext-111 cl6 p-t-2">
+									Saadame kõikjale üle Eesti pakiautomaatide kaudu.
+								</p>
+
+								<div class="p-t-15">
+									<span class="stext-112 cl8">
+										Kliendi andmed
+									</span>
+
+									<form action="handler/orderhandler.php" method="POST">
+										<div class="bor8 bg0 m-b-12">
+											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Aadress" name="address">
+										</div>
+
+										<div class="bor8 bg0 m-b-22">
+											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Telefoninumber" name="phone">
+										</div>
+										<span class="stext-112 cl8">
+											Makseviis
+										</span>
+										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+											<select class="js-select2" name="payment_method">
+												<option value="bank_transfer">Pangaülekanne</option>
+												<option value="paypal">PayPal</option>
+											</select>
+											<div class="dropDownSelect2"></div>
+										</div>
+
+										<!-- <div class="flex-w">
+											<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
+												Update Totals
+											</div>
+										</div> -->
+
+								</div>
+							</div>
+						</div>
+
+						<div class="flex-w flex-t p-t-27 p-b-33">
+							<div class="size-208">
+								<span class="mtext-101 cl2">
+									Kokku:
+								</span>
+							</div>
+
+							<div class="size-209 p-t-1">
+								<span class="mtext-110 cl2">
+									<?php echo $total; ?> €
+								</span>
+							</div>
+						</div>
+						<input type="hidden" name="total" value="<?php echo $total; ?>">
+						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" name="placeorder">
+							Esita tellimus
 						</button>
+						</form>
 					</div>
 				</div>
 			</div>

@@ -42,6 +42,7 @@ if (isset($_SESSION['cart'])) { //If session variable cart is already made (1 pr
     </script>";
 }
 
+
 //print_r($_SESSION['cart']);
 
 // session_destroy();

@@ -1,6 +1,10 @@
 <?php
 
-//DB connection
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+    //DB connection
 include("partials/connect.php");
 
 ?>
@@ -20,10 +24,18 @@ include("partials/connect.php");
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         Help & FAQs
                     </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
+                    
+                    <?php if (!empty($_SESSION['email'])) { ?>
+                        <a href="handler/customerlogout.php" class="flex-c-m trans-04 p-lr-25">
+                            Logi välja
+                        </a>
+                    <?php } else { ?>
+                        <a href="customerforms.php" class="flex-c-m trans-04 p-lr-25">
+                            Logi sisse
+                        </a>
+                    <?php }
+                     ?>
+                    
 
                 </div>
             </div>
@@ -64,8 +76,18 @@ include("partials/connect.php");
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                         <i class="zmdi zmdi-search"></i>
                     </div>
+                    
+                    <?php 
+                    if (!empty($_SESSION['cart'])) {
+                        $qty = count($_SESSION['cart']);
+                    } else {
+                        $qty = 0;
+                    }
+                    
+                    ?>
 
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php echo $qty; ?>">
+                    <!-- onclick="location.href='cart.php'" -->
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
 

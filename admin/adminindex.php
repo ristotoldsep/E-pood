@@ -48,6 +48,10 @@ include("adminpartials/head.php");
               <button style="color:blue;">Add new categories</button>
             </a>
             <hr>
+            <a href="orders.php">
+              <button style="color:blue;">View Orders</button>
+            </a>
+            <hr>
           </div>
 
         </div>
