@@ -1,18 +1,38 @@
+<?php
+include("partials/connect.php");
+
+//Kui kasutaja on sisse logitud, määra sessioonimuutuja
+if (isset($_SESSION['email'])) {
+	$userLoggedIn = $_SESSION['email']; //Email of user
+
+	//Get user details from db
+	$user_details_query = mysqli_query($connect, "SELECT * FROM customers WHERE username='$userLoggedIn'");
+
+	$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+}
+
+// print_r($user);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-
-<!-- Head template -->
 <?php
 
-include("partials/head.php"); ?>
+include("partials/indexhead.php"); ?>
 
 <body class="animsition">
 
-	<?php
+	<header>
+		<?php
+		// Peamenüü
+		include("partials/header.php");
+		?>
+	</header>
 
-	//Header template
-	include("partials/header.php");
+	<?php
+	// Ostukorvi modal
+	include("partials/cartmodal.php");
 
 	//Slider template
 	include("partials/slider.php");
@@ -28,46 +48,46 @@ include("partials/head.php"); ?>
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
-					Product Overview
+					Uued tooted
 				</h3>
 			</div>
 
 			<div class="flex-w flex-sb-m p-b-52">
 				<div class="flex-w flex-l-m filter-tope-group m-tb-10">
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-						All Products
+						Kõik tooted
 					</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".1">
-						Women
+						Naised
 					</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".2">
-						Men
+						Mehed
 					</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".3">
-						Bag
+						Kotid
 					</button>
 
 					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".4">
-						Shoes
+						Jalanõud
 					</button>
 
 				</div>
 
 				<div class="flex-w flex-c-m m-tb-10">
-					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+					<!-- <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						Filter
-					</div>
+					</div> -->
 
-					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+					<!-- <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
 						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
 						Search
-					</div>
+					</div> -->
 				</div>
 
 				<!-- Search product -->
@@ -273,7 +293,7 @@ include("partials/head.php"); ?>
 			<!-- PRODUCTS -->
 			<div class="row isotope-grid">
 				<?php
-				include("partials/connect.php");
+				// include("partials/connect.php");
 
 				$sql = "SELECT * FROM Products"; //Vali kõik tooted
 
@@ -290,13 +310,13 @@ include("partials/head.php"); ?>
 
 								<a href="details.php?details_id=<?php echo $final['id']; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
 									<!-- js-show-modal1 -->
-									Kiirvaade
+									Vaata
 								</a>
 							</div>
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									<a href="details.php?details_id=<?php echo $final['id']; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
 										<?php echo $final['name']; ?>
 									</a>
 
@@ -306,23 +326,26 @@ include("partials/head.php"); ?>
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-										<img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
-										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON">
+									<a href="carthandler.php?cart_id=<?php echo $final['id']; ?>&cart_name=<?php echo $final['name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>" class="btn-addwish-b2 dis-block pos-relative js-addcart-detail">
+										<!-- <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
+										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> -->
+										<i class="fa fa-cart-plus" aria-hidden="true" data-tooltip="Lisa korvi" title="Lisa korvi"></i>
+
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
 
-				<?php } ?>
+				<?php } //While loopi lõpp
+				?>
 
 			</div>
 
 			<!-- Load more -->
 			<div class="flex-c-m flex-w w-full p-t-45">
 				<a href="product.php" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
+					Vaata rohkem
 				</a>
 			</div>
 		</div>

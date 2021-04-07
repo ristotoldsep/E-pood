@@ -7,7 +7,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p><?php echo $_SESSION['email']; ?></p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -24,21 +24,26 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">MENÜÜ</li>
             
             <li>
                 <a href="adminindex.php">
-                    <i class="fa fa-th"></i> <span>Dashboard</span>
+                    <i class="fa fa-th"></i> <span>Töölaud</span>
                 </a>
             </li>
             <li>
                 <a href="categories.php">
-                    <i class="fa fa-th"></i> <span>Category</span>
+                    <i class="fa fa-th"></i> <span>Lisa kategooria</span>
                 </a>
             </li>
             <li>
                 <a href="productsshow.php">
-                    <i class="fa fa-th"></i> <span>Products</span>
+                    <i class="fa fa-th"></i> <span>Tooted</span>
+                </a>
+            </li>
+            <li>
+                <a href="orders.php">
+                    <i class="fa fa-th"></i> <span>Tellimused</span>
                 </a>
             </li>
             <li>

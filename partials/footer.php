@@ -4,31 +4,25 @@
         <div class="row">
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Categories
+                    Kliendile
                 </h4>
 
                 <ul>
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Women
+                            Kuidas osta e-poest?
                         </a>
                     </li>
 
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Men
+                            Müügitingimused
                         </a>
                     </li>
 
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shoes
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Watches
+                            Privaatsuspoliitika
                         </a>
                     </li>
                 </ul>
@@ -36,43 +30,45 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Help
+                    Klienditugi
                 </h4>
 
                 <ul>
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Track Order
+                            KKK
+                        </a>
+                    </li>
+                    <li class="p-b-10">
+                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                            Tarne ja tagastus
                         </a>
                     </li>
 
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Returns
+                            Meie garantii
                         </a>
                     </li>
 
                     <li class="p-b-10">
                         <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Shipping
+                            Kirjuta meile
                         </a>
                     </li>
 
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            FAQs
-                        </a>
-                    </li>
                 </ul>
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    GET IN TOUCH
+                    Info
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
-                    Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+                    Ravi 11, Tallinn
+                    <br>Kuldne Trio OÜ
+                    <br>Reg. nr: 123456
                 </p>
 
                 <div class="p-t-27">
@@ -84,33 +80,29 @@
                         <i class="fa fa-instagram"></i>
                     </a>
 
-                    <a href="#" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
-                        <i class="fa fa-pinterest-p"></i>
-                    </a>
                 </div>
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Newsletter
+                    Liitu uudiskirjaga
                 </h4>
 
                 <form>
                     <div class="wrap-input1 w-full p-b-4">
-                        <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+                        <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@gmail.com">
                         <div class="focus-input1 trans-04"></div>
                     </div>
 
                     <div class="p-t-18">
                         <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                            Subscribe
+                            Liitu
                         </button>
                     </div>
                 </form>
             </div>
         </div>
 
-        
         <div>
             <div class="flex-c-m flex-w p-b-18">
                 <a href="#" class="m-all-1">
@@ -125,21 +117,12 @@
                     <img src="images/icons/icon-pay-03.png" alt="ICON-PAY">
                 </a>
 
-                <a href="#" class="m-all-1">
-                    <img src="images/icons/icon-pay-04.png" alt="ICON-PAY">
-                </a>
-
-                <a href="#" class="m-all-1">
-                    <img src="images/icons/icon-pay-05.png" alt="ICON-PAY">
-                </a>
             </div>
 
             <p class="stext-107 cl6 txt-center">
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                Copyright &copy;<script>
+                E-pood. Autoriõigus &copy;<script>
                     document.write(new Date().getFullYear());
-                </script> All rights reserved | Made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://github.com/ristotoldsep" target="_blank">RicoBoyyy</a>
-                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </script>. Kõik õigused kaitstud.
 
             </p>
         </div>
@@ -147,7 +130,7 @@
 </footer>
 
 
-<!-- Back to top -->
+<!-- Tagasi üles nupp -->
 <div class="btn-back-to-top" id="myBtn">
     <span class="symbol-btn-back-to-top">
         <i class="zmdi zmdi-chevron-up"></i>
@@ -206,6 +189,7 @@
                     </div>
                 </div>
 
+                <!-- Quick view -->
                 <div class="col-md-6 col-lg-5 p-b-30">
                     <div class="p-r-50 p-t-5 p-lr-0-lg">
                         <h4 class="mtext-105 cl2 js-name-detail p-b-14">
@@ -275,7 +259,7 @@
                                     </div>
 
                                     <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                        Add to cart
+                                        Lisa korvi
                                     </button>
                                 </div>
                             </div>
@@ -362,7 +346,7 @@
     $('.js-addwish-b2').each(function() {
         var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
         $(this).on('click', function() {
-            swal(nameProduct, "is added to wishlist !", "success");
+            swal(nameProduct, "on ostukorvi lisatud!", "success");
 
             $(this).addClass('js-addedwish-b2');
             $(this).off('click');
@@ -385,7 +369,7 @@
     $('.js-addcart-detail').each(function() {
         var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
         $(this).on('click', function() {
-            swal(nameProduct, "is added to cart !", "success");
+            swal(nameProduct, "on lisatud ostukorvi!", "success");
         });
     });
 </script>

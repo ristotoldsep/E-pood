@@ -48,27 +48,74 @@ include("adminpartials/head.php");
             <!-- Main content -->
             <section class="content">
                 <!-- Small boxes (Stat box) -->
+                <div class="wrap-table-shopping-cart">
+                    <table class="">
+                        <tr class="table_head">
+                            <th class="column-1">Kliendi nr:</th>
+                            <th class="column-2">Aadress</th>
+                            <th class="column-3">Telefon</th>
+                            <th class="column-4">Makstud summa</th>
+                            <th class="column-5">Maksemeetod</th>
+                        </tr>
+                        <tr class="table_row">
+                            <td class="column-1"><?php echo $final['customer_id']; ?></td>
+                            <td class="column-2"><?php echo $final['address']; ?></td>
+                            <td class="column-3"><?php echo $final['phone']; ?></td>
+                            <td class="column-4"><?php echo $final['total']; ?></td>
+                            <td class="column-5"><?php echo $final['payment_method']; ?></td>
+                        </tr>
+                    </table>
+                </div>
 
                 <div class="row">
+
                     <div class="col-sm-9">
 
-
-
-
-                        <h3>Name: <?php echo $final['name']; ?></h3>
+                        <h3>Kliendi nr: <?php echo $final['customer_id']; ?></h3>
                         <hr><br>
 
-                        <h3>Price: <?php echo $final['price']; ?></h3>
+                        <h3>Aadress: <?php echo $final['address']; ?></h3>
                         <hr><br>
 
-                        <h3>Description: <?php echo $final['description']; ?></h3>
+                        <h3>Telefon: <?php echo $final['phone']; ?></h3>
                         <hr><br>
 
-                        <img src="../<?php echo $final['picture']; ?>" alt="product_image" style="height:300px; width:300px;">
+                        <h3>Makstud summa: <?php echo $final['total']; ?> €</h3>
+                        <hr><br>
+
+                        <h3>Maksemeetod: <?php echo $final['payment_method']; ?></h3>
+                        <hr><br>
+
+                    </div>
+
+                    <div class="col-sm-9">
+
+                        <?php
 
 
+                        $sql = "SELECT * FROM Order_details WHERE id='$id'";
+
+                        $results = $connect->query($sql);
+
+                        $final = $results->fetch_assoc(); //Get associative array of the query results (all records from db)
+
+                        ?>
 
 
+                        <h3>Kliendi nr: <?php echo $final['customer_id']; ?></h3>
+                        <hr><br>
+
+                        <h3>Aadress: <?php echo $final['address']; ?></h3>
+                        <hr><br>
+
+                        <h3>Telefon: <?php echo $final['phone']; ?></h3>
+                        <hr><br>
+
+                        <h3>Makstud summa: <?php echo $final['total']; ?> €</h3>
+                        <hr><br>
+
+                        <h3>Maksemeetod: <?php echo $final['payment_method']; ?></h3>
+                        <hr><br>
 
                     </div>
 

@@ -1,22 +1,70 @@
+<?php
+
+include("partials/connect.php");
+
+/* if (!isset($_SESSION)) {
+	session_start();
+}
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head template -->
-<?php include("partials/head.php"); ?>
+<head>
+	<title>Ostukorv</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+</head>
 
 <body class="animsition">
 
-	<?php
+	<header class="header-v4">
+		<?php
 
-	//Header template
-	include("partials/header.php");
+		//Header template
+		include("partials/header.php");
 
-	?>
+		?>
+	</header>
+
+	<?php include("partials/cartmodal.php"); ?>
+
 
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			About
+			Meist
 		</h2>
 	</section>
 
@@ -28,7 +76,7 @@
 				<div class="col-md-7 col-lg-8">
 					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
 						<h3 class="mtext-111 cl2 p-b-16">
-							Our Story
+							Meie lugu
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
@@ -40,7 +88,7 @@
 						</p>
 
 						<p class="stext-113 cl6 p-b-26">
-							Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+							Küsimuste korral kontakteeruge meiega meilil info@epood.ee
 						</p>
 					</div>
 				</div>
@@ -58,7 +106,7 @@
 				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
 					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
 						<h3 class="mtext-111 cl2 p-b-16">
-							Our Mission
+							Meie missioon
 						</h3>
 
 						<p class="stext-113 cl6 p-b-26">
@@ -67,11 +115,11 @@
 
 						<div class="bor16 p-l-29 p-b-9 m-t-22">
 							<p class="stext-114 cl6 p-r-40 p-b-11">
-								Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn't really do it, they just saw something. It seemed obvious to them after a while.
+								Pappi on vaja teenida.
 							</p>
 
 							<span class="stext-111 cl8">
-								- Steve Job’s
+								- Lennart Meri
 							</span>
 						</div>
 					</div>

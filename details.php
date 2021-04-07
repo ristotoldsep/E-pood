@@ -1,18 +1,74 @@
+<?php
+
+include("partials/connect.php");
+
+// Tootepäring
+
+// include("partials/connect.php");
+
+$id = $_GET['details_id'];
+
+$sql = "SELECT * FROM Products WHERE id = '$id'";
+
+$results = $connect->query($sql);
+
+$final = $results->fetch_assoc();
+
+//echo print_r($final);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head template -->
-<?php include("partials/head.php"); ?>
+<head>
+	<title><?php echo $final['name']; ?> | E-pood</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+</head>
 
 <body class="animsition">
 
-	<?php
+	<header class="header-v4">
+		<?php
 
-	//Header template
-	include("partials/header.php");
+		// Peamenüü
+		include("partials/header.php");
 
-	?>
-
+		?>
+	</header>
+	<!-- Ostukorvi modaal -->
+	<?php include("partials/cartmodal.php"); ?>
 
 	<!-- breadcrumb -->
 	<div class="container">
@@ -38,20 +94,7 @@
 	<section class="sec-product-detail bg0 p-t-65 p-b-60">
 		<div class="container">
 			<div class="row">
-				<?php
-				include("partials/connect.php");
 
-				$id = $_GET['details_id'];
-
-				$sql = "SELECT * FROM Products WHERE id = '$id'";
-
-				$results = $connect->query($sql);
-
-				$final = $results->fetch_assoc();
-
-				//echo print_r($final);
-
-				?>
 				<div class="col-md-6 col-lg-7 p-b-30">
 					<div class="p-l-25 p-r-30 p-lr-0-lg">
 						<div class="wrap-slick3 flex-sb flex-w">
@@ -147,34 +190,43 @@
 								</div>
 							</div> -->
 
-							<div class="flex-w flex-r-m p-b-10">
-								<div class="size-204 flex-w flex-m respon6-next">
+							<div class=" p-b-10">
+								<div class="size-204 respon6-next">
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+										<input id="quantity" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+
+										<script>
+											function getdata() {
+												let txtOne = document.getElementById('quantity').value;
+												// Do Something 
+												console.log(txtOne);
+											}
+										</script>
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
 
-									<button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart" onclick="location.href='carthandler.php?cart_id=<?php echo $final['id']; ?>&cart_name=<?php echo $final['name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>'">
-										Add to cart
+									<!-- Lisa korvi -->
+									<button class=" stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart" onclick="location.href='carthandler.php?cart_id=<?php echo $final['id']; ?>&cart_name=<?php echo $final['name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>'">
+										Lisa korvi
 									</button>
 								</div>
 							</div>
 						</div>
 
 						<!--  -->
-						<div class="flex-w flex-m p-l-100 p-t-40 respon7">
-							<div class="flex-m bor9 p-r-10 m-r-11">
+						<div class="p-t-20 respon7">
+							<!-- <div class="flex-m bor9 p-r-10 m-r-11">
 								<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
 									<i class="zmdi zmdi-favorite"></i>
 								</a>
-							</div>
+							</div> -->
 
 							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
 								<i class="fa fa-facebook"></i>
@@ -184,9 +236,6 @@
 								<i class="fa fa-twitter"></i>
 							</a>
 
-							<a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-								<i class="fa fa-google-plus"></i>
-							</a>
 						</div>
 					</div>
 				</div>
@@ -198,7 +247,7 @@
 					<!-- Nav tabs -->
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="nav-item p-b-10">
-							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Tootekirjeldus</a>
 						</li>
 
 						<!-- <li class="nav-item p-b-10">
@@ -216,7 +265,7 @@
 						<div class="tab-pane fade show active" id="description" role="tabpanel">
 							<div class="how-pos2 p-lr-15-md">
 								<p class="stext-102 cl6">
-									<?php echo $final['description']; ?> <br>
+									<center><?php echo $final['description']; ?></center> <br>
 								</p>
 							</div>
 						</div>
@@ -233,7 +282,7 @@
 			</span> -->
 
 			<span class="stext-107 cl6 p-lr-25">
-				Categories: Jacket, Men LISA SIIA KATEGOORIA
+				Kategooria: LISA SIIA KATEGOORIA
 			</span>
 		</div>
 	</section>

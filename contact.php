@@ -9,7 +9,7 @@
 	<?php
 
 	//Header template
-	include("partials/header.php");
+	include("partials/header2.php");
 
 	?>
 

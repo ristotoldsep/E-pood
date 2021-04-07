@@ -2,7 +2,9 @@
 
 session_start(); //To use session variables
 
-if (isset($_POST['remove'])) { //If remove button is pushed, loop over the cart items and if right item name is found (Comes from "hidden" input), unset (remove that product)
+// header("location: index.php");
+
+if (isset($_POST['remove']) || isset($_POST['eemalda'])) { //If remove button is pushed, loop over the cart items and if right item name is found (Comes from "hidden" input), unset (remove that product)
     foreach ($_SESSION['cart'] as $key => $value) { //key = ID, value = Whole associative array
         if ($value['item_name'] == $_POST['item_name']) {
             unset($_SESSION['cart'][$key]);

@@ -1,26 +1,64 @@
+<?php
+
+include("partials/connect.php");
+
+/* if (!isset($_SESSION)) {
+	session_start();
+}
+ */
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head template -->
-<?php
-
-	if (!isset($_SESSION)) {
-		session_start();
-	} 
-
-include ("partials/head.php");
-
-?>
+<head>
+	<title>Ostukorv</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+</head>
 
 <body class="animsition">
 
-	<?php
+	<header class="header-v4">
+		<?php
 
-	//Header template
-	include ("partials/header.php");
+		//Header template
+		include("partials/header.php");
 
-	?>
+		?>
+	</header>
 
+	<?php include("partials/cartmodal.php"); ?>
 
 	<!-- breadcrumb -->
 	<!-- <div class="container">
@@ -36,7 +74,6 @@ include ("partials/head.php");
 		</div>
 	</div> -->
 
-
 	<!-- Shoping Cart -->
 	<div class="bg0 p-t-75 p-b-85">
 		<div class="container">
@@ -46,25 +83,49 @@ include ("partials/head.php");
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">Product</th>
-									<th class="column-5">Name</th>
-									<th class="column-3">Price</th>
-									<th class="column-5">Quantity</th>
+									<th class="column-1">Toode</th>
+									<th class="column-5">Nimi</th>
+									<th class="column-3">Hind</th>
+									<th class="column-5">Kogus</th>
 									<th class="column-5"></th>
-									<th class="column-3">Total</th>
+									<th class="column-3">Kokku</th>
 									<th class="column-4"></th>
 								</tr>
 								<?php
-								
+
 								$total = 0; //For calculating the total sum of cart products
 
 								if (isset($_SESSION['cart'])) {
 
+									$qty = count($_SESSION['cart']);
+
+									// Kui ostukorv on tühi = teavita kasutajat
+									if ($qty == 0) { ?>
+
+										<tr class="table_row">
+											<td class="column-1">
+
+												<span class="stext-110 cl2">
+													Ostukorv on tühi!
+												</span>
+
+											</td>
+											<td class="column-5">
+											<td class="column-3">
+											<td class="column-5">
+											<td class="column-5">
+											<td class="column-3">
+											<td class="column-4">
+										</tr>
+
+									<?php }
+
+									// Kui ei ole väljasta loopis ostukorvi tooted
 									foreach ($_SESSION['cart'] as $key => $value) {
 
 										$total += $value['item_price'] * $value['quantity'];
 
-								?>
+									?>
 
 										<tr class="table_row">
 											<td class="column-1">
@@ -76,41 +137,58 @@ include ("partials/head.php");
 											<td class="column-3"><?php echo $value['item_price']; ?> €</td>
 											<td class="column-4">
 
-											<form action="cartupdate.php" method="POST">
-												<div class="wrap-num-product flex-w m-l-auto m-r-0">
-													<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
-														<i class="fs-16 zmdi zmdi-minus"></i>
-													</div>
+												<form action="cartupdate.php" method="POST">
+													<div class="wrap-num-product flex-w m-l-auto m-r-0">
+														<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
+															<i class="fs-16 zmdi zmdi-minus"></i>
+														</div>
 
-													<input name="quantity" class="mtext-104 cl3 txt-center num-product" type="number" value="<?php echo $value['quantity']; ?>">
+														<input name="quantity" class="mtext-104 cl3 txt-center num-product" type="number" value="<?php echo $value['quantity']; ?>">
 
-													<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
-														<i class="fs-16 zmdi zmdi-plus"></i>
+														<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
+															<i class="fs-16 zmdi zmdi-plus"></i>
+														</div>
 													</div>
-												</div>
 											</td>
 											<td class="column-5">
-												<button class="btn btn-sm btn-outline-success" name="update"><i class="zmdi zmdi-check"></i></button>
-													<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
+												<button title="Uuenda" data-tooltip="Uuenda" class="btn btn-sm btn-outline-success" name="update"><i class="zmdi zmdi-check"></i></button>
+												<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
 												</form>
 											</td>
-											<td class="column-3"><?php echo $value['item_price'] * $value['quantity']; //QUANTITY * PRICE ?> €</td>
+											<td class="column-3"><?php echo $value['item_price'] * $value['quantity']; //QUANTITY * PRICE 
+																	?> €</td>
 											<td class="column-3">
 												<form action="cartremove.php" method="POST">
-													<button class="btn btn-sm btn-outline-danger" name="remove"><i class="zmdi zmdi-delete"></i></button>
+													<button title="Kustuta" class="btn btn-sm btn-outline-danger" name="remove"><i class="zmdi zmdi-delete"></i></button>
 													<input type="hidden" name="item_name" value="<?php echo $value['item_name']; ?>"> <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
 												</form>
 											</td>
 										</tr>
-								<?php
-									}
-								}
+									<?php
+									} //Loopi lõpp 
+								} else { ?>
+									<tr class="table_row">
+										<td class="column-1">
+
+											<span class="stext-110 cl2">
+												Ostukorv on tühi!
+											</span>
+
+										</td>
+										<td class="column-5">
+										<td class="column-3">
+										<td class="column-5">
+										<td class="column-5">
+										<td class="column-3">
+										<td class="column-4">
+									</tr>
+								<?php }
 								?>
 
 							</table>
 						</div>
 
-						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+						<!-- <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
 								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
 
@@ -119,23 +197,23 @@ include ("partials/head.php");
 								</div>
 							</div>
 
-							<!-- <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 								Update Cart
-							</div> -->
-						</div>
+							</div> 
+						</div> -->
 					</div>
 				</div>
 
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
-							Cart Totals
+							Ostukorv kokku
 						</h4>
 
 						<div class="flex-w flex-t bor12 p-b-13">
 							<div class="size-208">
 								<span class="stext-110 cl2">
-									Subtotal:
+									Kogusumma:
 								</span>
 							</div>
 
@@ -148,7 +226,7 @@ include ("partials/head.php");
 
 
 						<button onclick="location.href='cart2.php'" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							Proceed to Checkout
+							Suundu kassasse
 						</button>
 					</div>
 				</div>
