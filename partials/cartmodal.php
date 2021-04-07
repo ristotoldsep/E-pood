@@ -39,12 +39,14 @@
                         <li class="header-cart-item flex-w flex-t m-b-12">
 
                             <!-- <form id="eemalda" name="eemalda" action="cartremove.php" method="POST"> -->
-                                <div title="Eemalda" class="header-cart-item-img" onclick="document.forms['eemalda'].submit();">
-                                    <!-- Pildile vajutades eemaldab toote korvist -->
-                                    <!-- <button name="remove"> --><img title="Eemalda" src="./<?php echo $value['item_picture']; ?>" alt="IMG"><!-- </button> -->
+                            <div title="Eemalda" class="header-cart-item-img" onclick="document.forms['eemalda'].submit();">
+                                <!-- Pildile vajutades eemaldab toote korvist -->
+                                <!-- <button name="remove"> --><img title="Eemalda" src="./<?php echo $value['item_picture']; ?>" alt="IMG"><!-- </button> -->
 
-                                    <!-- <input type="hidden" name="item_name" value="<?php //echo $value['item_name']; ?>">  --><!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
-                                </div>
+                                <!-- <input type="hidden" name="item_name" value="<?php //echo $value['item_name']; 
+                                                                                    ?>">  -->
+                                <!-- TO TELL BACK END WHICH PRODUCT TO REMOVE -->
+                            </div>
                             <!-- </form> -->
 
                             <div class="header-cart-item-txt p-t-8">
@@ -64,7 +66,7 @@
                             </div>
                         </li>
 
-                <?php
+                    <?php
                         //Et ei laseks kujundusel katki minna kui liiga palju tooteid korvis
                         /* $i++;
                         echo $i;
@@ -72,8 +74,11 @@
                             break;
                         } */
                     }
-                }
-
+                } else { ?>
+                    <li class="header-cart-item flex-w flex-t m-b-12">
+                        Ostukorv on tühi!
+                    </li>
+                <?php }
                 ?>
 
             </ul>

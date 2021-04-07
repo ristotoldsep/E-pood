@@ -1,9 +1,9 @@
 <?php
-// session_start();
+ob_start();
+session_start();
 include("../partials/connect.php");
 
 if (isset($_POST['login'])) { //Kas logi sisse nuppu vajutati?
-
 
     $email = $_POST['email'];
     $password = $_POST['password'];

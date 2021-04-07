@@ -9,19 +9,19 @@
 
                 <ul>
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="kuidasosta.php" class="stext-107 cl7 hov-cl1 trans-04">
                             Kuidas osta e-poest?
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="myygitingimused.php" class="stext-107 cl7 hov-cl1 trans-04">
                             Müügitingimused
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="privaatsuspoliitika.php" class="stext-107 cl7 hov-cl1 trans-04">
                             Privaatsuspoliitika
                         </a>
                     </li>
@@ -35,24 +35,18 @@
 
                 <ul>
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="kkk.php" class="stext-107 cl7 hov-cl1 trans-04">
                             KKK
                         </a>
                     </li>
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="tarnetagastus.php" class="stext-107 cl7 hov-cl1 trans-04">
                             Tarne ja tagastus
                         </a>
                     </li>
 
                     <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
-                            Meie garantii
-                        </a>
-                    </li>
-
-                    <li class="p-b-10">
-                        <a href="#" class="stext-107 cl7 hov-cl1 trans-04">
+                        <a href="contact.php" class="stext-107 cl7 hov-cl1 trans-04">
                             Kirjuta meile
                         </a>
                     </li>
@@ -62,10 +56,11 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Info
+                    Kontakt
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
+                    info@epood.ee<br>
                     Ravi 11, Tallinn
                     <br>Kuldne Trio OÜ
                     <br>Reg. nr: 123456
@@ -292,6 +287,8 @@
     </div>
 </div>
 
+
+
 <!--===============================================================================================-->
 <script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
@@ -391,4 +388,5 @@
     });
 </script>
 <!--===============================================================================================-->
+
 <script src="js/main.js"></script>

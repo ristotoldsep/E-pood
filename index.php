@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION)) {
+	session_start();
+}
+
 include("partials/connect.php");
 
 //Kui kasutaja on sisse logitud, määra sessioonimuutuja
@@ -10,8 +14,8 @@ if (isset($_SESSION['email'])) {
 
 	$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
 }
-
 // print_r($user);
+// print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>
@@ -91,7 +95,7 @@ include("partials/indexhead.php"); ?>
 				</div>
 
 				<!-- Search product -->
-				<div class="dis-none panel-search w-full p-t-10 p-b-15">
+				<!-- <div class="dis-none panel-search w-full p-t-10 p-b-15">
 					<div class="bor8 dis-flex p-l-15">
 						<button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
 							<i class="zmdi zmdi-search"></i>
@@ -99,10 +103,10 @@ include("partials/indexhead.php"); ?>
 
 						<input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
 					</div>
-				</div>
+				</div> -->
 
 				<!-- Filter -->
-				<div class="dis-none panel-filter w-full p-t-10">
+				<!-- <div class="dis-none panel-filter w-full p-t-10">
 					<div class="wrap-filter flex-w bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
 						<div class="filter-col1 p-r-15 p-b-27">
 							<div class="mtext-102 cl2 p-b-15">
@@ -288,7 +292,7 @@ include("partials/indexhead.php"); ?>
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> -->
 			</div>
 			<!-- PRODUCTS -->
 			<div class="row isotope-grid">
@@ -298,6 +302,8 @@ include("partials/indexhead.php"); ?>
 				$sql = "SELECT * FROM Products"; //Vali kõik tooted
 
 				$results = $connect->query($sql);
+
+				$i = 0; //Toodete lugemiseks
 
 				while ($final = $results->fetch_assoc()) {	?>
 					<!-- LOOP FOR PRODUCTS -->
@@ -337,7 +343,13 @@ include("partials/indexhead.php"); ?>
 						</div>
 					</div>
 
-				<?php } //While loopi lõpp
+				<?php 
+				//Esilehel ainult 8 toodet
+					$i++;
+					if ($i == 8) {
+						break;
+					};
+				} //While loopi lõpp
 				?>
 
 			</div>

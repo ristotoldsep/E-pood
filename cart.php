@@ -1,11 +1,18 @@
 <?php
-
-include("partials/connect.php");
-
-/* if (!isset($_SESSION)) {
+if (!isset($_SESSION)) {
 	session_start();
 }
- */
+include("partials/connect.php");
+
+//Kui kasutaja on sisse logitud, määra sessioonimuutuja
+if (isset($_SESSION['email'])) {
+	$userLoggedIn = $_SESSION['email']; //Email of user
+
+	//Get user details from db
+	$user_details_query = mysqli_query($connect, "SELECT * FROM customers WHERE username='$userLoggedIn'");
+
+	$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+}
 ?>
 
 <!DOCTYPE html>
@@ -217,7 +224,7 @@ include("partials/connect.php");
 								</span>
 							</div>
 
-							<div class="size-209">
+							<div class="size-209" style="text-align:center;">
 								<span class="mtext-110 cl2">
 									<?php echo $total; ?> €
 								</span>
@@ -228,6 +235,7 @@ include("partials/connect.php");
 						<button onclick="location.href='cart2.php'" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 							Suundu kassasse
 						</button>
+
 					</div>
 				</div>
 			</div>

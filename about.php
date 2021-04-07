@@ -1,11 +1,21 @@
 <?php
+if (!isset($_SESSION)) {
+	session_start();
+}
 
 include("partials/connect.php");
 
-/* if (!isset($_SESSION)) {
-	session_start();
+//Kui kasutaja on sisse logitud, määra sessioonimuutuja
+if (isset($_SESSION['email'])) {
+	$userLoggedIn = $_SESSION['email']; //Email of user
+
+	//Get user details from db
+	$user_details_query = mysqli_query($connect, "SELECT * FROM customers WHERE username='$userLoggedIn'");
+
+	$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
 }
- */
+// print_r($user);
+// print_r($_SESSION);
 ?>
 
 <!DOCTYPE html>

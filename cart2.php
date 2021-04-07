@@ -1,28 +1,98 @@
+<?php
+if (!isset($_SESSION)) {
+	session_start();
+}
+
+//Kui pole sisse logitud, suuna sisselogimislehele
+if (!isset($_SESSION['email']) && !isset($_SESSION['password'])) {
+	echo "<script> 
+
+	window.location.href='customerforms.php';
+	
+	</script>";
+}
+
+/* if (empty($_SESSION['username'] AND $_SESSION['password'])) {
+	echo "<script> alert('Please Log In');
+		//window.location.href='customerforms.php';
+		</script>";
+} */
+
+include("partials/connect.php");
+
+//Kui kasutaja on sisse logitud, määra sessioonimuutuja
+if (isset($_SESSION['email'])) {
+	$userLoggedIn = $_SESSION['email']; //Email of user
+
+	//Get user details from db
+	$user_details_query = mysqli_query($connect, "SELECT * FROM customers WHERE username='$userLoggedIn'");
+
+	$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+
+}
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head template -->
-<?php
-
-	if (!isset($_SESSION)) {
-		session_start();
-	} 
-	
-//If not logged in, redirect to login page
-include ("./handler/customersession.php");
-
-include ("partials/head.php");
-
-?>
+<head>
+	<title>Ostukorv</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.png" />
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/linearicons-v1.0.0/icon-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/MagnificPopup/magnific-popup.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<!--===============================================================================================-->
+</head>
 
 <body class="animsition">
 
 	<?php
 
-	//Header template
-	include ("partials/header.php");
 
 	?>
+
+	<header class="header-v4">
+		<?php
+
+		//Header template
+		include("partials/header.php");
+
+		?>
+	</header>
+
+	<?php include("partials/cartmodal.php"); ?>
+
 
 
 	<!-- breadcrumb -->
@@ -58,16 +128,39 @@ include ("partials/head.php");
 									<th class="column-4"></th>
 								</tr>
 								<?php
-								
+
 								$total = 0; //For calculating the total sum of cart products
 
 								if (isset($_SESSION['cart'])) {
+
+									$qty = count($_SESSION['cart']);
+
+									// Kui ostukorv on tühi = teavita kasutajat
+									if ($qty == 0) { ?>
+
+										<tr class="table_row">
+											<td class="column-1">
+
+												<span class="stext-110 cl2">
+													Ostukorv on tühi!
+												</span>
+
+											</td>
+											<td class="column-5">
+											<td class="column-3">
+											<td class="column-5">
+											<td class="column-5">
+											<td class="column-3">
+											<td class="column-4">
+										</tr>
+
+									<?php }
 
 									foreach ($_SESSION['cart'] as $key => $value) {
 
 										$total += $value['item_price'] * $value['quantity'];
 
-								?>
+									?>
 
 										<tr class="table_row">
 											<td class="column-1">
@@ -106,15 +199,31 @@ include ("partials/head.php");
 												</form>
 											</td>
 										</tr>
-								<?php
+									<?php
 									}
-								}
+								} else { ?>
+									<tr class="table_row">
+										<td class="column-1">
+
+											<span class="stext-110 cl2">
+												Ostukorv on tühi!
+											</span>
+
+										</td>
+										<td class="column-5">
+										<td class="column-3">
+										<td class="column-5">
+										<td class="column-5">
+										<td class="column-3">
+										<td class="column-4">
+									</tr>
+								<?php }
 								?>
 
 							</table>
 						</div>
 
-						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+						<!-- <div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
 								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
 
@@ -123,10 +232,10 @@ include ("partials/head.php");
 								</div>
 							</div>
 
-							<!-- <div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
+							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 								Update Cart
-							</div> -->
-						</div>
+							</div>
+						</div> -->
 					</div>
 				</div>
 
@@ -220,6 +329,95 @@ include ("partials/head.php");
 		</div>
 	</div>
 
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<p id="modal-text"></p>
+		</div>
+
+	</div>
+
+	<style>
+		/* MODAL */
+		.loginmodal {
+			display: none;
+			/* Hidden by default */
+			position: fixed;
+			/* Stay in place */
+			z-index: 1;
+			/* Sit on top */
+			left: 0;
+			top: 0;
+			width: 100%;
+			/* Full width */
+			height: 100%;
+			/* Full height */
+			overflow: auto;
+			/* Enable scroll if needed */
+			background-color: #000;
+			/* Fallback color */
+			background-color: rgba(0, 0, 0, 0.4);
+			/* Black w/ opacity */
+		}
+
+		/* Modal Content/Box */
+		.modal-content {
+			background-color: #fefefe;
+			margin: 15% auto;
+			/* 15% from the top and centered */
+			padding: 20px;
+			border: 1px solid #888;
+			width: 80%;
+			/* Could be more or less, depending on screen size */
+		}
+
+		/* The Close Button */
+		.close {
+			color: #aaa;
+			float: right;
+			font-size: 28px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: #000;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	</style>
+
+	<script>
+		// Get the modal
+		let modal = document.getElementById("myModal");
+		let modalText = document.getElementById("modal-text");
+		// Get the <span> element that closes the modal
+		let span = document.getElementsByClassName("close")[0];
+		/** Show modal for 2 sec */
+		let showModal = (text) => {
+			modal.style.display = "block";
+			modalText.innerHTML = "<p>" + text + "</p>";
+
+			setTimeout(() => {
+				modal.style.display = "none";
+			}, 2000);
+		}
+
+		// When the user clicks on <span> (x), close the modal
+		span.onclick = () => {
+			modal.style.display = "none";
+		}
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = (event) => {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
+	</script>
 
 	<!-- Footer -->
 	<?php

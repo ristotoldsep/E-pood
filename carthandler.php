@@ -1,6 +1,8 @@
-<?php 
+<?php
 
-session_start(); //Without it session variables would not work
+if (!isset($_SESSION)) {
+    session_start();
+} //Without it session variables would not work
 
 if (isset($_SESSION['cart'])) { //If session variable cart is already made (1 product or more already in the cart, then add new product to next pos in array)
     $checker = array_column($_SESSION['cart'], 'item_name'); //Check if same product is already in cart

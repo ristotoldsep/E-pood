@@ -1,28 +1,18 @@
 <?php
-if (!isset($_SESSION)) {
-	session_start();
-}
 
 include("partials/connect.php");
 
-//Kui kasutaja on sisse logitud, määra sessioonimuutuja
-if (isset($_SESSION['email'])) {
-	$userLoggedIn = $_SESSION['email']; //Email of user
-
-	//Get user details from db
-	$user_details_query = mysqli_query($connect, "SELECT * FROM customers WHERE username='$userLoggedIn'");
-
-	$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+/* if (!isset($_SESSION)) {
+	session_start();
 }
-// print_r($user);
-// print_r($_SESSION);
+ */
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-	<title>Ostukorv</title>
+	<title>Privaatsuspoliitika</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -74,84 +64,71 @@ if (isset($_SESSION['email'])) {
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
 		<h2 class="ltext-105 cl0 txt-center">
-			Kontakt
+			Privaatsuspoliitika
 		</h2>
 	</section>
 
 
 	<!-- Content page -->
-	<section class="bg0 p-t-104 p-b-116">
+	<section class="bg0 p-t-75 p-b-120">
 		<div class="container">
-			<div class="flex-w flex-tr">
-				<div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
-					<form action="handler/contact.php" method="POST">
-						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							Kirjuta meile
-						</h4>
+			<div class="row p-b-148">
+				<div class="col-md-7 col-lg-8">
+					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							Meie lugu
+						</h3>
 
-						<div class="bor8 m-b-20 how-pos4-parent">
-							<input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Sinu E-posti aadress">
-							<img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
-						</div>
+						<p class="stext-113 cl6 p-b-26">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris consequat consequat enim, non auctor massa ultrices non. Morbi sed odio massa. Quisque at vehicula tellus, sed tincidunt augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas varius egestas diam, eu sodales metus scelerisque congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas gravida justo eu arcu egestas convallis. Nullam eu erat bibendum, tempus ipsum eget, dictum enim. Donec non neque ut enim dapibus tincidunt vitae nec augue. Suspendisse potenti. Proin ut est diam. Donec condimentum euismod tortor, eget facilisis diam faucibus et. Morbi a tempor elit.
+						</p>
 
-						<div class="bor8 m-b-30">
-							<textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg" placeholder="Kuidas saame aidata?"></textarea>
-						</div>
+						<p class="stext-113 cl6 p-b-26">
+							Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula.
+						</p>
 
-						<button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Saada
-						</button>
-					</form>
+						<p class="stext-113 cl6 p-b-26">
+							Küsimuste korral kontakteeruge meiega meilil info@epood.ee
+						</p>
+					</div>
 				</div>
 
-				<div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-30 p-lr-15-lg w-full-md">
-					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-map-marker"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Aadress
-							</span>
-
-							<p class="stext-115 cl6 size-213 p-t-18">
-								Ravi 11, Tallinn<br>
-								Kuldne Trio OÜ<br>
-								Reg. nr: 123456
-							</p>
+				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+					<div class="how-bor1 ">
+						<div class="hov-img0">
+							<img src="images/about-01.jpg" alt="IMG">
 						</div>
 					</div>
+				</div>
+			</div>
 
-					<div class="flex-w w-full p-b-42">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-phone-handset"></span>
-						</span>
+			<div class="row">
+				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
+					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							Meie missioon
+						</h3>
 
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Telefon
-							</span>
+						<p class="stext-113 cl6 p-b-26">
+							Mauris non lacinia magna. Sed nec lobortis dolor. Vestibulum rhoncus dignissim risus, sed consectetur erat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nullam maximus mauris sit amet odio convallis, in pharetra magna gravida. Praesent sed nunc fermentum mi molestie tempor. Morbi vitae viverra odio. Pellentesque ac velit egestas, luctus arcu non, laoreet mauris. Sed in ipsum tempor, consequat odio in, porttitor ante. Ut mauris ligula, volutpat in sodales in, porta non odio. Pellentesque tempor urna vitae mi vestibulum, nec venenatis nulla lobortis. Proin at gravida ante. Mauris auctor purus at lacus maximus euismod. Pellentesque vulputate massa ut nisl hendrerit, eget elementum libero iaculis.
+						</p>
 
-							<p class="stext-115 cl1 size-213 p-t-18">
-								+372 5911 3357
+						<div class="bor16 p-l-29 p-b-9 m-t-22">
+							<p class="stext-114 cl6 p-r-40 p-b-11">
+								Pappi on vaja teenida.
 							</p>
+
+							<span class="stext-111 cl8">
+								- Lennart Meri
+							</span>
 						</div>
 					</div>
+				</div>
 
-					<div class="flex-w w-full">
-						<span class="fs-18 cl5 txt-center size-211">
-							<span class="lnr lnr-envelope"></span>
-						</span>
-
-						<div class="size-212 p-t-2">
-							<span class="mtext-110 cl2">
-								Klienditugi
-							</span>
-
-							<p class="stext-115 cl1 size-213 p-t-18">
-								info@epood.ee
-							</p>
+				<div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
+					<div class="how-bor2">
+						<div class="hov-img0">
+							<img src="images/about-02.jpg" alt="IMG">
 						</div>
 					</div>
 				</div>
@@ -160,14 +137,6 @@ if (isset($_SESSION['email'])) {
 	</section>
 
 
-	<!-- Map -->
-	<!-- <div class="map">
-		<div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
-	</div> -->
-
-
-
-	<!-- Footer -->
 	<?php
 
 	//Footer template
