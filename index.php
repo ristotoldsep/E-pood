@@ -67,7 +67,7 @@ include("partials/indexhead.php"); ?>
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
-					Uued tooted
+					Uued produd
 				</h3>
 			</div>
 
