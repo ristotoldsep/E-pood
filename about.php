@@ -12,7 +12,14 @@ if (isset($_SESSION['email'])) {
 	//Get user details from db
 	$user_details_query = mysqli_query($connect, "SELECT * FROM customers WHERE username='$userLoggedIn'");
 
-	$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+	$admin_query = mysqli_query($connect, "SELECT * FROM admins WHERE username='$userLoggedIn'");
+
+	//Kontrolli kas sisselogitud kasutaja on admin
+	if (mysqli_num_rows($admin_query) == 0) {
+		$user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
+	} else {
+		$user = mysqli_fetch_array($admin_query); //return array from db (info about the logged in user)
+	}
 }
 // print_r($user);
 // print_r($_SESSION);

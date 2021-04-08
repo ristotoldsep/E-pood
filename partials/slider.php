@@ -2,18 +2,18 @@
 <section class="section-slide">
     <div class="wrap-slick1">
         <div class="slick1">
-            <div class="item-slick1" style="background-image: url(images/slide-01.jpg);">
+            <div class="item-slick1" style="background-image: url(images/modell1.png);">
                 <div class="container h-full">
                     <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                         <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
                             <span class="ltext-101 cl2 respon2">
-                                Naiste kollektsioon 2021
+                                Meeste kollektsioon 2021
                             </span>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
                             <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                UUS HOOAEG
+                                UUED KAUBAD
                             </h2>
                         </div>
 
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <div class="item-slick1" style="background-image: url(images/slide-02.jpg);">
+            <div class="item-slick1" style="background-image: url(images/modell2.png);">
                 <div class="container h-full">
                     <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                         <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
@@ -50,18 +50,18 @@
                 </div>
             </div>
 
-            <div class="item-slick1" style="background-image: url(images/slide-03.jpg);">
+            <div class="item-slick1" style="background-image: url(images/modell4.png);">
                 <div class="container h-full">
                     <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                         <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
                             <span class="ltext-101 cl2 respon2">
-                                Meeste Kollektsioon 2021
+                                Naiste Kollektsioon 2021
                             </span>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
                             <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                Uued Kaubad
+                                UUS HOOAEG
                             </h2>
                         </div>
 
