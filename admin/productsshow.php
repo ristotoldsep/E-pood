@@ -41,7 +41,7 @@ include("adminpartials/head.php");
                     <div class="col-sm-9">
 
                         <a href="products.php">
-                            <button class="btn btn-success">Lisa uus</button>
+                            <button class="btn btn-success">Lisa toode</button>
                             <hr>
                         </a>
 

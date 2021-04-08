@@ -40,11 +40,11 @@ include("adminpartials/head.php");
 
           <div class="col-sm-9">
             <a href="products.php">
-              <button class="btn btn-success">Lisa uus toode</button>
+              <button class="btn btn-success">Lisa uus toode +</button>
             </a>
             <hr>
             <a href="categories.php">
-              <button class="btn btn-primary">Lisa uus kategooria</button>
+              <button class="btn btn-primary">Lisa uus kategooria +</button>
             </a>
             <hr>
             <a href="orders.php">

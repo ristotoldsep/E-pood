@@ -38,9 +38,6 @@ if (isset($_SESSION['email'])) {
 
 }
 
-
-
-
 ?>
 
 <!DOCTYPE html>

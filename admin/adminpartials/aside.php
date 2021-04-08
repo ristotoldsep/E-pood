@@ -42,6 +42,11 @@
                 </a>
             </li>
             <li>
+                <a href="teated.php">
+                    <i class="fa fa-bell-o"></i> <span>Teated</span>
+                </a>
+            </li>
+            <li>
                 <a href="categories.php">
                     <i class="fa fa-plus-square"></i> <span>Lisa kategooria</span>
                 </a>

@@ -99,29 +99,56 @@ include("adminpartials/head.php");
                 <div class="row">
                     <div class="col-sm-9">
 
-                        <?php
-                        //DB connection
-                        include('../partials/connect.php');
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="box">
+                                    <div class="box-header">
+                                        <h3 class="box-title">Tellimused</h3>
 
-                        $sql = "SELECT * FROM Orders";
-                        $results = $connect->query($sql);
 
-                        while ($final = $results->fetch_assoc()) { ?>
+                                    </div>
 
-                            <a href="ordershow.php?order_id=<?php echo $final['id']; ?>">
-                                <!-- <img src="../<?php echo $final['picture']; ?>" alt="product_image" style="heigth:70px; width:70px;"> -->
-                                <small><?php echo $final['created_at']; ?></small>
-                                <h3>Tellimus #<?php echo $final['id']; ?></h3>
-                                <br>
-                            </a>
+                                    <?php
+                                    //DB connection
+                                    include('../partials/connect.php');
 
-                            <a href="orderdelete.php?del_id=<?php echo $final['id']; ?>">
-                                <button class="btn btn-danger">Kustuta</button>
-                            </a>
-                            <hr>
+                                    $sql = "SELECT * FROM Orders";
+                                    $results = $connect->query($sql);
 
-                        <?php }
-                        ?>
+                                    ?>
+                                    <div class="box-body table-responsive no-padding">
+                                        <table class="table table-hover">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Tellimus</th>
+                                                <th>Postitatud</th>
+                                                <th>Tegevus</th>
+                                            </tr>
+                                            <?php
+                                            while ($final = $results->fetch_assoc()) { ?>
+
+                                                <tr>
+                                                    <td><?php echo $final['id']; ?></td>
+                                                    <td><a href="ordershow.php?order_id=<?php echo $final['id']; ?>">
+
+                                                            <h4>Tellimus #<?php echo $final['id']; ?></h4>
+
+                                                        </a></td>
+                                                    <td><?php echo $final['created_at']; ?></td>
+                                                    <td><a href="orderdelete.php?del_id=<?php echo $final['id']; ?>">
+                                                            <button class="btn btn-danger">Kustuta</button>
+                                                        </a></td>
+                                                </tr>
+
+                                            <?php } ?>
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
 
                     </div>
 
