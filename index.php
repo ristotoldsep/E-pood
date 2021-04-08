@@ -56,6 +56,14 @@ include("partials/indexhead.php"); ?>
 	<!-- MAIN CONTENT -->
 	<!-- Product -->
 	<section class="bg0 p-t-23 p-b-140">
+
+		<?php
+		$sql2 = "SELECT * FROM Categories";
+
+		$cats = mysqli_query($connect, $sql2);
+
+		?>
+
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
@@ -69,21 +77,13 @@ include("partials/indexhead.php"); ?>
 						Kõik tooted
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".1">
-						Naised
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".2">
-						Mehed
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".3">
-						Aksessuaarid
-					</button>
-
-					<!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".4">
-						Jalanõud
-					</button> -->
+					<?php
+					while ($row = mysqli_fetch_array($cats)) { ?>
+						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".<?php echo $row['id']; ?>">
+							<?php echo $row['name']; ?>
+						</button>
+					<?php }
+					?>
 
 				</div>
 
@@ -350,8 +350,8 @@ include("partials/indexhead.php"); ?>
 						</div>
 					</div>
 
-				<?php 
-				//Esilehel ainult 8 toodet
+				<?php
+					//Esilehel ainult 8 toodet
 					$i++;
 					if ($i == 8) {
 						break;

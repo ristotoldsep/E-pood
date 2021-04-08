@@ -77,10 +77,19 @@ print_r($admin_query); */
 		?>
 	</header>
 	<!-- Ostukorvi modaal -->
-	<?php include("partials/cartmodal.php"); ?>
+	<?php include("partials/cartmodal.php"); 
 
+	// include("partials/connect.php");
 
-	<br>
+	// Toodete päring
+	$sql = "SELECT P.id AS prod_id, P.name AS prod_name, P.price AS price, P.picture AS picture, P.description AS description, P.category_id AS cat_id, C.name AS cat_name FROM Products P, Categories C WHERE P.category_id=C.id";
+
+	$sql2 = "SELECT * FROM Categories";
+
+	$cats = mysqli_query($connect, $sql2);
+
+	$results = $connect->query($sql); ?>
+
 	<!-- Tooted -->
 	<div class="bg0 p-b-140">
 		<div class="container">
@@ -90,21 +99,13 @@ print_r($admin_query); */
 						Kõik tooted
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".1">
-						Naised
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".2">
-						Mehed
-					</button>
-
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".3">
-						Aksessuaarid
-					</button>
-
-					<!-- <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-						Jalanõud
-					</button> -->
+					<?php 
+						while ($row = mysqli_fetch_array($cats)) { ?>
+							<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".<?php echo $row['id']; ?>">
+								<?php echo $row['name']; ?>
+							</button>
+						<?php }
+					?>
 
 				</div>
 
@@ -324,22 +325,18 @@ print_r($admin_query); */
 			</div>
 
 			<div class="row isotope-grid">
+
+
 				<?php
-				// include("partials/connect.php");
-
-				$sql = "SELECT * FROM Products";
-
-				$results = $connect->query($sql);
-
 				while ($final = mysqli_fetch_array($results)) { ?>
 
-					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php echo $final['category_id'] ?>">
+					<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <?php echo $final['cat_id'] ?>">
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-pic hov-img0">
 								<img src="<?php echo $final['picture']; ?>" alt="IMG-PRODUCT" style="height:300px;">
 
-								<a href="details.php?details_id=<?php echo $final['id']; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+								<a href="details.php?details_id=<?php echo $final['prod_id']; ?>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 									<!-- js-show-modal1 -->
 									Vaata
 								</a>
@@ -348,8 +345,8 @@ print_r($admin_query); */
 
 							<div class="block2-txt flex-w flex-t p-t-14">
 								<div class="block2-txt-child1 flex-col-l ">
-									<a href="details.php?details_id=<?php echo $final['id']; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-										<?php echo $final['name']; ?>
+									<a href="details.php?details_id=<?php echo $final['prod_id']; ?>" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+										<?php echo $final['prod_name']; ?>
 									</a>
 
 									<span class="stext-105 cl3">
@@ -358,7 +355,7 @@ print_r($admin_query); */
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3 ">
-									<a href="carthandler.php?cart_id=<?php echo $final['id']; ?>&cart_name=<?php echo $final['name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>" class="btn-addwish-b2 dis-block pos-relative js-addcart-detail">
+									<a href="carthandler.php?cart_id=<?php echo $final['prod_id']; ?>&cart_name=<?php echo $final['prod_name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>" class="btn-addwish-b2 dis-block pos-relative js-addcart-detail">
 										<!-- <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> -->
 										<i class="fa fa-cart-plus" aria-hidden="true" data-tooltip="Lisa korvi" title="Lisa korvi"></i>
