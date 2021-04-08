@@ -36,7 +36,7 @@
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     // Show a success message to the buyer
-                    alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    alert('Tellimus edastatud, ' + details.payer.name.given_name + '!');
                     window.location.href='../index.php';
                 });
             }
