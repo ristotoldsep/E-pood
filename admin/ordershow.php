@@ -30,6 +30,8 @@ include("adminpartials/head.php");
 
         $final = $results->fetch_assoc(); //Get associative array of the query results (all records from db)
 
+       
+
         ?>
 
         <!-- Content Wrapper. Contains page content -->
@@ -58,11 +60,16 @@ include("adminpartials/head.php");
                             <th class="column-5">Maksemeetod</th>
                         </tr>
                         <tr class="table_row">
-                            <td class="column-1"><?php //echo $final['customer_id']; ?></td>
-                            <td class="column-2"><?php //echo $final['address']; ?></td>
-                            <td class="column-3"><?php //echo $final['phone']; ?></td>
-                            <td class="column-4"><?php //echo $final['total']; ?></td>
-                            <td class="column-5"><?php //echo $final['payment_method']; ?></td>
+                            <td class="column-1"><?php //echo $final['customer_id']; 
+                                                    ?></td>
+                            <td class="column-2"><?php //echo $final['address']; 
+                                                    ?></td>
+                            <td class="column-3"><?php //echo $final['phone']; 
+                                                    ?></td>
+                            <td class="column-4"><?php //echo $final['total']; 
+                                                    ?></td>
+                            <td class="column-5"><?php //echo $final['payment_method']; 
+                                                    ?></td>
                         </tr>
                     </table>
                 </div> -->
@@ -71,20 +78,27 @@ include("adminpartials/head.php");
 
                     <div class="col-sm-9">
 
-                        <h3>Kliendi nr: <?php echo $final['customer_id']; ?></h3>
-                        <hr><br>
+                        <h4>Kliendi nr:</h4>
+                        <p><?php echo $final['customer_id']; ?></p>
+                        <hr>
 
-                        <h3>Aadress: <?php echo $final['address']; ?></h3>
-                        <hr><br>
+                        <h4>Kliendi nimi:</h4>
+                        <p><?php echo $final['nimi']; ?></p>
+                        <hr>
 
-                        <h3>Telefon: <?php echo $final['phone']; ?></h3>
-                        <hr><br>
+                        <h4>Aadress: <?php echo $final['address']; ?></h4>
+                        <hr>
 
-                        <h3>Makstud summa: <?php echo $final['total']; ?> €</h3>
-                        <hr><br>
+                        <h4>Telefon: <?php echo $final['phone']; ?></h4>
+                        <hr>
 
-                        <h3>Maksemeetod: <?php echo $final['payment_method']; ?></h3>
-                        <hr><br>
+                        <h4>Makstud summa: <?php echo $final['total']; ?> €</h4>
+                        <hr>
+
+                        <h4>Maksemeetod: <?php echo $final['payment_method']; ?></h4>
+                        <hr>
+
+                        
 
                     </div>
 
@@ -92,17 +106,25 @@ include("adminpartials/head.php");
 
                         <?php
 
+                        $sql2 = "SELECT * from order_details O, products P WHERE O.order_id='$id' AND O.product_id=P.id";
+                        $results = mysqli_query($connect, $sql2);
 
-                        $sql = "SELECT * FROM Order_details WHERE id='$id'";
+                        $final = mysqli_fetch_array($results);
 
-                        $results = $connect->query($sql);
-
-                        $final = $results->fetch_assoc(); //Get associative array of the query results (all records from db)
-
+                        // print_r($final);
                         ?>
 
+                        <h4> Toote ID : <?php echo $final['product_id']; ?> </h4>
+                        <hr>
 
-                        
+                        <h4> Toote nimi : <?php echo $final['name']; ?> </h4>
+                        <hr>
+
+                        <h4> Kogus : <?php echo $final['quantity']; ?> </h4>
+                        <hr>
+
+
+
                     </div>
 
                     <div class="col-sm-3">

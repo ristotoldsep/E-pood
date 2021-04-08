@@ -93,20 +93,54 @@
                         <li class="footer"><a href="#">See All Messages</a></li>
                     </ul>
                 </li> -->
+                <?php
+                //DB connection
+                include('../partials/connect.php');
+
+                $sql = "SELECT * FROM Contact";
+                $kontakt = $connect->query($sql);
+
+                $sql2 = "SELECT * FROM Orders";
+                $tellimus = $connect->query($sql2);
+
+                $count1 = mysqli_num_rows($kontakt);
+                $count2 = mysqli_num_rows($tellimus);
+
+                $count = $count1 + $count2;
+
+                ?>
+
                 <!-- Notifications: style can be found in dropdown.less -->
                 <li class="dropdown notifications-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-bell-o"></i>
-                        <span class="label label-warning">3</span>
+                        <span class="label label-warning"><?php echo $count; ?></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">Sul on 3 teadet</li>
+                        <li class="header">Sul on <?php echo $count; ?> teadet</li>
                         <li>
 
                             <ul class="menu">
+                                <?php
+                                while ($row = mysqli_fetch_array($kontakt)) { ?>
+                                    <li>
+                                        <a href="teated.php">
+                                            <i class="fa fa-users text-aqua"></i> Teade <?php echo $row['email']; ?>-lt
+                                        </a>
+                                    </li>
+                                <?php }
+
+                                while ($rida = mysqli_fetch_array($tellimus)) { ?>
+                                    <li>
+                                        <a href="#">
+                                            <i class="fa fa-shopping-basket text-red"></i> Uus tellimus #<?php echo $rida['id']; ?>
+                                        </a>
+                                    </li>
+                                <?php }
+                                ?>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-users text-aqua"></i> 5 uut klienti liitus hiljuti
+                                        <i class="fa fa-users text-green"></i> 5 uut klienti liitus hiljuti
                                     </a>
                                 </li>
                                 <li>
@@ -119,7 +153,7 @@
                                         <i class="fa fa-users text-red"></i> 3 uut tellimust
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                         <li class="footer"><a href="#">Vaata kõiki</a></li>
@@ -168,7 +202,7 @@
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
-               <!--  <li>
+                <!--  <li>
                     <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
                 </li> -->
             </ul>

@@ -6,11 +6,12 @@ session_start();
 $total = $_POST['total'];
 $phone = $_POST['phone'];
 $address = $_POST['address'];
+$nimi = $_POST['nimi'];
 $payment_method = $_POST['payment_method'];
 $customer_id = $_SESSION['customer_id'];
 
 
-$sql = "INSERT INTO Orders (customer_id, address, phone, total, payment_method) VALUES ('$customer_id', '$address', '$phone', '$total', '$payment_method')";
+$sql = "INSERT INTO Orders (customer_id, address, phone, total, payment_method, nimi) VALUES ('$customer_id', '$address', '$phone', '$total', '$payment_method', '$nimi')";
 
 $connect->query($sql);
 
@@ -32,7 +33,7 @@ foreach ($_SESSION['cart'] as $key => $value) {
     $connect->query($sql3);
 }
 if ($payment_method == "paypal") {
-    $_SESSION['total'] = $total; //Passng the total to session variable, later passing that to Paypal
+    $_SESSION['total'] = $total; //Passing the total to session variable, later passing that to Paypal
 
     header('location: paypal.php');
 } else {

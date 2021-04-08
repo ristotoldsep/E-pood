@@ -274,6 +274,10 @@ if (isset($_SESSION['email'])) {
 								<p class="stext-111 cl6 p-t-2">
 									Saadame kõikjale üle Eesti pakiautomaatide kaudu.
 								</p>
+								
+								<strong><p class="stext-111 cl6 p-t-2">
+									Pakiautomaatide valik siia.
+								</p></strong>
 
 								<div class="p-t-15">
 									<span class="stext-112 cl8">
@@ -281,6 +285,10 @@ if (isset($_SESSION['email'])) {
 									</span>
 
 									<form action="handler/orderhandler.php" method="POST">
+										<div class="bor8 bg0 m-b-12">
+											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Nimi" name="nimi">
+										</div>
+
 										<div class="bor8 bg0 m-b-12">
 											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Aadress" name="address">
 										</div>
