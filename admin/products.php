@@ -24,12 +24,12 @@ include("adminpartials/head.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
-                    <small>Control panel</small>
+                    Töölaud
+                    <small>Lisa toode</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><a href="adminindex.php"><i class="fa fa-dashboard"></i> Töölaud</a></li>
+                    <li class="active">Lisa toode</li>
                 </ol>
             </section>
 
@@ -40,42 +40,42 @@ include("adminpartials/head.php");
                 <div class="row">
                     <div class="col-sm-3">
                         <a href="productsshow.php">
-                            <button>Back</button>
+                            <button class="btn btn-primary">Tagasi</button>
                         </a>
                     </div>
                     <div class="col-sm-6">
                         <!-- form start -->
                         <form role="form" action="producthandler.php" method="POST" enctype="multipart/form-data">
-                            <h1>Products</h1>
+                            <h1>Lisa toode</h1>
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Product Name" name="name">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Sisesta toote nimi" name="name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="price">Price</label>
-                                    <input type="text" class="form-control" id="price" placeholder="Price" name="price">
+                                    <label for="price">Hind</label>
+                                    <input type="text" class="form-control" id="price" placeholder="Hind" name="price">
                                 </div>
                                 <div class="form-group">
-                                    <label for="picture">Image</label>
+                                    <label for="picture">Pilt</label>
                                     <input type="file" id="picture" name="file">
                                 </div>
                                 <div class="form-group">
-                                    <label for="description">Description</label>
-                                    <textarea id="description" class="form-control" rows="5" placeholder="Describe your product.." name="description"></textarea>
+                                    <label for="description">Tootekirjeldus</label>
+                                    <textarea id="description" class="form-control" rows="5" placeholder="Kirjeldage toodet..." name="description"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="category">Category</label>
+                                    <label for="category">Kategooria</label>
                                     <select id="category" name="category">
-                                        <?php 
-                                            include("../partials/connect.php"); //To access $connect object
+                                        <?php
+                                        include("../partials/connect.php"); //To access $connect object
 
-                                            $cat="SELECT * FROM categories";
-                                            $results=mysqli_query($connect, $cat);
-                                            //Looping over categories in DB and echoing out
-                                            while($row=mysqli_fetch_assoc($results)) {
-                                                echo "<option value=".$row['id'].">".$row['name']."</option>";
-                                            }
+                                        $cat = "SELECT * FROM categories";
+                                        $results = mysqli_query($connect, $cat);
+                                        //Looping over categories in DB and echoing out
+                                        while ($row = mysqli_fetch_assoc($results)) {
+                                            echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+                                        }
                                         ?>
                                     </select>
                                 </div>
@@ -83,7 +83,7 @@ include("adminpartials/head.php");
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Sisesta</button>
                             </div>
                         </form>
                     </div>

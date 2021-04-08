@@ -5,6 +5,17 @@
 include("adminpartials/session.php");
 //Head
 include("adminpartials/head.php");
+
+include('../partials/connect.php');
+
+$newid = $_GET['up_id'];
+
+$sql = "SELECT * FROM Products WHERE id='$newid'";
+
+$results = $connect->query($sql);
+
+$final = $results->fetch_assoc();
+
 ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -24,12 +35,12 @@ include("adminpartials/head.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
-                    <small>Control panel</small>
+                    Töölaud
+                    <small>Muuda toodet</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><a href="adminindex.php"><i class="fa fa-dashboard"></i> Töölaud</a></li>
+                    <li class="active">Muuda toodet</li>
                 </ol>
             </section>
 
@@ -44,39 +55,27 @@ include("adminpartials/head.php");
                     <div class="col-sm-6">
                         <!-- form start -->
                         <form role="form" action="proupdatehandler.php" method="POST" enctype="multipart/form-data">
-                            <?php
-                            include('../partials/connect.php');
 
-                            $newid = $_GET['up_id'];
-
-                            $sql = "SELECT * FROM Products WHERE id='$newid'";
-
-                            $results = $connect->query($sql);
-
-                            $final = $results->fetch_assoc();
-
-                            ?>
-
-                            <h1>Products</h1>
+                            <h4>Muuda toodet "<?php echo $final['name']; ?>"</h4>
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Product Name" name="name" value="<?php echo $final['name']; ?>">
+                                    <label for="name">Nimi</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Sisesta toote nimi" name="name" value="<?php echo $final['name']; ?>">
                                 </div>
                                 <div class="form-group">
-                                    <label for="price">Price</label>
-                                    <input type="text" class="form-control" id="price" placeholder="Price" name="price" value="<?php echo $final['price']; ?>">
+                                    <label for="price">Hind</label>
+                                    <input type="text" class="form-control" id="price" placeholder="Hind" name="price" value="<?php echo $final['price']; ?>">
                                 </div>
                                 <img src="../<?php echo $final['picture']; ?>" alt="image" style="width:200px;height:200px;">
                                 <div class="form-group">
-                                    <label for="picture">Image</label>
+                                    <label for="picture">Pilt</label>
                                     <input type="file" id="picture" name="file" value="<?php echo $final['picture']; ?>" </div>
                                     <div class="form-group">
-                                        <label for="description">Description</label>
+                                        <label for="description">Tootekirjeldus</label>
                                         <textarea id="description" class="form-control" rows="5" placeholder="Describe your product.." name="description"><?php echo $final['description']; ?></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="category">Category</label>
+                                        <label for="category">Kategooria</label>
                                         <select id="category" name="category" value="<?php echo $final['category']; ?>">
                                             <?php
 
@@ -84,7 +83,13 @@ include("adminpartials/head.php");
                                             $results = mysqli_query($connect, $cat);
                                             //Looping over categories in DB and echoing out
                                             while ($row = mysqli_fetch_assoc($results)) {
-                                                echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+                                                
+                                                if ($row['id'] == $final['category_id']) {
+                                                    echo "<option selected value=" . $row['id'] . ">" . $row['name'] . "</option>";
+                                                } else {
+                                                    echo "<option value=" . $row['id'] . ">" . $row['name'] . "</option>";
+                                                }
+                                                
                                             }
                                             ?>
                                         </select>
@@ -96,7 +101,7 @@ include("adminpartials/head.php");
                                     <!-- TO ACTUALLY UPDATE THE RIGHT PRODUCT IN DB -->
                                     <input type="hidden" value="<?php echo $final['id']; ?>" name="form_id">
 
-                                    <button type="submit" class="btn btn-primary" name="update">Update</button>
+                                    <button type="submit" class="btn btn-primary" name="update">Uuenda</button>
                                 </div>
                         </form>
                     </div>

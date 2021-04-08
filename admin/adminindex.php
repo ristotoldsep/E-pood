@@ -18,18 +18,17 @@ include("adminpartials/head.php");
     include("adminpartials/aside.php");
     ?>
 
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Dashboard
-          <small>Control panel</small>
+          Töölaud
+          <small>Töölaud</small>
         </h1>
         <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Dashboard</li>
+          <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+          <li class="active">Töölaud</li>
         </ol>
       </section>
 
@@ -41,15 +40,15 @@ include("adminpartials/head.php");
 
           <div class="col-sm-9">
             <a href="products.php">
-              <button style="color:green;">Add new product</button>
+              <button class="btn btn-success">Lisa uus toode</button>
             </a>
             <hr>
             <a href="categories.php">
-              <button style="color:blue;">Add new categories</button>
+              <button class="btn btn-primary">Lisa uus kategooria</button>
             </a>
             <hr>
             <a href="orders.php">
-              <button style="color:blue;">View Orders</button>
+              <button class="btn btn-warning">Vaata tellimusi</button>
             </a>
             <hr>
           </div>

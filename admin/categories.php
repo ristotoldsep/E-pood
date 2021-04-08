@@ -24,12 +24,12 @@ include("adminpartials/head.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
-                    <small>Control panel</small>
+                    Töölaud
+                    <small>Kategooriad</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><a href="adminindex.php"><i class="fa fa-dashboard"></i> Töölaud</a></li>
+                    <li class="active">Kategooriad</li>
                 </ol>
             </section>
 
@@ -44,18 +44,18 @@ include("adminpartials/head.php");
                     <div class="col-sm-6">
                         <!-- form start -->
                         <form role="form" action="cathandler.php" method="POST">
-                            <h1>Categories</h1>
+                            <h1>Lisa kategooria</h1>
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="category">Categories</label>
-                                    <input type="text" class="form-control" id="category" name="name" placeholder="Enter category">
+                                    <label for="category">Kategooria</label>
+                                    <input type="text" class="form-control" id="category" name="name" placeholder="Sisesta kategooria nimi">
                                 </div>
                                 
                             </div>
                             <!-- /.box-body -->
 
                             <div class="box-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary">Lisa</button>
                             </div>
                         </form>
                     </div>

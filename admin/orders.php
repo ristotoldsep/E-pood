@@ -37,13 +37,13 @@ include("adminpartials/head.php");
             <section class="content">
                 <!-- Small boxes (Stat box) -->
 
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
                             <div class="box-header">
                                 <h3 class="box-title">Tellimused</h3>
 
-                                <!-- <div class="box-tools">
+                                <div class="box-tools">
                                     <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
                                         <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
@@ -51,9 +51,8 @@ include("adminpartials/head.php");
                                             <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                         </div>
                                     </div>
-                                </div> -->
+                                </div>
                             </div>
-                            <!-- /.box-header -->
                             <div class="box-body table-responsive no-padding">
                                 <table class="table table-hover">
                                     <tr>
@@ -93,11 +92,9 @@ include("adminpartials/head.php");
                                     </tr>
                                 </table>
                             </div>
-                            <!-- /.box-body -->
                         </div>
-                        <!-- /.box -->
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <div class="col-sm-9">
@@ -119,15 +116,12 @@ include("adminpartials/head.php");
                             </a>
 
                             <a href="orderdelete.php?del_id=<?php echo $final['id']; ?>">
-                                <button style="background:red; color:white;">Kustuta</button>
+                                <button class="btn btn-danger">Kustuta</button>
                             </a>
                             <hr>
 
                         <?php }
                         ?>
-
-
-
 
                     </div>
 

@@ -24,12 +24,12 @@ include("adminpartials/head.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
-                    <small>Control panel</small>
+                    Töölaud
+                    <small>Tooted</small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><a href="adminindex.php"><i class="fa fa-dashboard"></i> Töölaud</a></li>
+                    <li class="active">Tooted</li>
                 </ol>
             </section>
 
@@ -41,9 +41,10 @@ include("adminpartials/head.php");
                     <div class="col-sm-9">
 
                         <a href="products.php">
-                            <button style="color:green;">Add new</button><hr>
+                            <button class="btn btn-success">Lisa uus</button>
+                            <hr>
                         </a>
-                        
+
                         <?php
                         //DB connection
                         include('../partials/connect.php');
@@ -60,12 +61,13 @@ include("adminpartials/head.php");
                             </a>
 
                             <a href="proupdate.php?up_id=<?php echo $final['id']; ?>">
-                                <button>Update</button>
+                                <button class="btn btn-yahoo">Muuda</button>
                             </a>
 
                             <a href="prodelete.php?del_id=<?php echo $final['id']; ?>">
-                                <button style="background:red; color:white;">Delete</button>
-                            </a><hr>
+                                <button class="btn btn-danger">Kustuta</button>
+                            </a>
+                            <hr>
 
                         <?php }
                         ?>

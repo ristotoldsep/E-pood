@@ -5,6 +5,18 @@
 include("adminpartials/session.php");
 //Head
 include("adminpartials/head.php");
+
+//DB connection
+include('../partials/connect.php');
+
+//Connected with productsshow.php
+$id = $_GET['pro_id'];
+$sql = "SELECT * FROM Products WHERE id='$id'";
+
+$results = $connect->query($sql);
+
+$final = $results->fetch_assoc(); //Get associative array of the query results (all records from db)
+
 ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -24,12 +36,12 @@ include("adminpartials/head.php");
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Dashboard
-                    <small>Control panel</small>
+                    Töölaud
+                    <small><?php echo $final['name']; ?></small>
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Töölaud</a></li>
+                    <li class="active"><?php echo $final['name']; ?></li>
                 </ol>
             </section>
 
@@ -40,27 +52,16 @@ include("adminpartials/head.php");
                 <div class="row">
                     <div class="col-sm-9">
 
-                        <?php
-                        //DB connection
-                        include('../partials/connect.php');
+                        <h3>Nimi:</h3> <p><?php echo $final['name']; ?></p>
+                        <hr><br>
+
+                        <h3>Hind:</h3> <p><?php echo $final['price']; ?>€</p>
+                        <hr><br>
+
+                        <h3>Tootekirjeldus:</h3> <p><?php echo $final['description']; ?></p>
+                        <hr><br>
                         
-                        //Connected with productsshow.php
-                        $id = $_GET['pro_id'];
-                        $sql = "SELECT * FROM Products WHERE id='$id'";
-
-                        $results = $connect->query($sql); 
-
-                        $final = $results->fetch_assoc(); //Get associative array of the query results (all records from db)
-
-                        ?>  
-
-
-                        <h3>Name: <?php echo $final['name']; ?></h3><hr><br>
-
-                        <h3>Price: <?php echo $final['price']; ?></h3><hr><br>
-                        
-                        <h3>Description: <?php echo $final['description']; ?></h3><hr><br>
-
+                        <h4>Pilt</h4>
                         <img src="../<?php echo $final['picture']; ?>" alt="product_image" style="height:300px; width:300px;">
 
 

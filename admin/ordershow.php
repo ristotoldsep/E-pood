@@ -48,7 +48,7 @@ include("adminpartials/head.php");
             <!-- Main content -->
             <section class="content">
                 <!-- Small boxes (Stat box) -->
-                <div class="wrap-table-shopping-cart">
+                <!-- <div class="wrap-table-shopping-cart">
                     <table class="">
                         <tr class="table_head">
                             <th class="column-1">Kliendi nr:</th>
@@ -58,14 +58,14 @@ include("adminpartials/head.php");
                             <th class="column-5">Maksemeetod</th>
                         </tr>
                         <tr class="table_row">
-                            <td class="column-1"><?php echo $final['customer_id']; ?></td>
-                            <td class="column-2"><?php echo $final['address']; ?></td>
-                            <td class="column-3"><?php echo $final['phone']; ?></td>
-                            <td class="column-4"><?php echo $final['total']; ?></td>
-                            <td class="column-5"><?php echo $final['payment_method']; ?></td>
+                            <td class="column-1"><?php //echo $final['customer_id']; ?></td>
+                            <td class="column-2"><?php //echo $final['address']; ?></td>
+                            <td class="column-3"><?php //echo $final['phone']; ?></td>
+                            <td class="column-4"><?php //echo $final['total']; ?></td>
+                            <td class="column-5"><?php //echo $final['payment_method']; ?></td>
                         </tr>
                     </table>
-                </div>
+                </div> -->
 
                 <div class="row">
 
@@ -102,21 +102,7 @@ include("adminpartials/head.php");
                         ?>
 
 
-                        <h3>Kliendi nr: <?php echo $final['customer_id']; ?></h3>
-                        <hr><br>
-
-                        <h3>Aadress: <?php echo $final['address']; ?></h3>
-                        <hr><br>
-
-                        <h3>Telefon: <?php echo $final['phone']; ?></h3>
-                        <hr><br>
-
-                        <h3>Makstud summa: <?php echo $final['total']; ?> €</h3>
-                        <hr><br>
-
-                        <h3>Maksemeetod: <?php echo $final['payment_method']; ?></h3>
-                        <hr><br>
-
+                        
                     </div>
 
                     <div class="col-sm-3">
