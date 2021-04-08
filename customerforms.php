@@ -71,7 +71,7 @@ if (isset($_SESSION['email'])) {
     <?php include("partials/cartmodal.php"); ?>
 
     <!-- Content page -->
-    <section class="bg0 p-t-104 p-b-116">
+    <section class="bg0 p-t-40 p-b-116">
         <div class="container">
             <div class="flex-w flex-tr">
                 <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">

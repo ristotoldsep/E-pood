@@ -10,7 +10,7 @@ if (isset($_SESSION['cart'])) { //If session variable cart is already made (1 pr
     if (in_array($_GET['cart_name'], $checker)) { //needle, haystack
         echo "<script>
         
-        alert('Product already in cart!');
+        alert('Toode on juba ostukorvis!');
         
         window.location.href='details.php?details_id=". $_GET['cart_id'] . "';
 

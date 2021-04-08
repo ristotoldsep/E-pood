@@ -15,8 +15,6 @@ if (isset($_POST['update'])) { //If update button is pushed, loop over the cart 
             echo "
             <script>
             
-            /*alert('Item updated');*/
-            
             window.location.href='cart.php';
 
             </script>

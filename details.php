@@ -26,13 +26,13 @@ if (isset($_SESSION['email'])) {
 
 $id = $_GET['details_id'];
 
-$sql = "SELECT * FROM Products WHERE id = '$id'";
+$sql = "SELECT P.id AS prod_id, P.name AS prod_name, P.price AS price, P.picture AS picture, P.description AS description, P.category_id AS cat_id, C.name AS cat_name FROM Products P, Categories C WHERE P.id = '$id' AND P.category_id=C.id";
 
-$results = $connect->query($sql);
+$results = mysqli_query($connect, $sql);
 
-$final = $results->fetch_assoc();
+$final = mysqli_fetch_array($results);
 
-//echo print_r($final);
+//  print_r($final);
 
 ?>
 
@@ -40,7 +40,7 @@ $final = $results->fetch_assoc();
 <html lang="en">
 
 <head>
-	<title><?php echo $final['name']; ?> | E-pood</title>
+	<title><?php echo $final['prod_name']; ?> | E-pood</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--===============================================================================================-->
@@ -109,7 +109,7 @@ $final = $results->fetch_assoc();
 	<br>
 
 	<!-- Product Detail -->
-	<section class="sec-product-detail bg0 p-t-65 p-b-60">
+	<section class="sec-product-detail bg0 p-t-10 p-b-60">
 		<div class="container">
 			<div class="row">
 
@@ -157,7 +157,7 @@ $final = $results->fetch_assoc();
 				<div class="col-md-6 col-lg-5 p-b-30">
 					<div class="p-r-50 p-t-5 p-lr-0-lg">
 						<h4 class="mtext-105 cl2 js-name-detail p-b-14">
-							<?php echo $final['name']; ?>
+							<?php echo $final['prod_name']; ?>
 						</h4>
 
 						<span class="mtext-106 cl2">
@@ -217,21 +217,22 @@ $final = $results->fetch_assoc();
 
 										<input id="quantity" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
 
-										<script>
+										<!-- <script>
 											function getdata() {
 												let txtOne = document.getElementById('quantity').value;
 												// Do Something 
 												console.log(txtOne);
 											}
-										</script>
+										</script> -->
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
 										</div>
 									</div>
+									
 
 									<!-- Lisa korvi -->
-									<button class=" stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart" onclick="location.href='carthandler.php?cart_id=<?php echo $final['id']; ?>&cart_name=<?php echo $final['name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>'">
+									<button class=" stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart" onclick="location.href='carthandler.php?cart_id=<?php echo $final['prod_id']; ?>&cart_name=<?php echo $final['prod_name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>'">
 										Lisa korvi
 									</button>
 								</div>
@@ -300,7 +301,7 @@ $final = $results->fetch_assoc();
 			</span> -->
 
 			<span class="stext-107 cl6 p-lr-25">
-				Kategooria: LISA SIIA KATEGOORIA
+				Kategooria: <?php echo $final['cat_name']; ?>
 			</span>
 		</div>
 	</section>

@@ -11,6 +11,8 @@ $msg=$_POST['msg'];
 $sql="INSERT INTO contact(email, msg) VALUES('$email', '$msg')";
 
 //$connect object comes from partials/connect.php
-$connect->query($sql);
+$result = mysqli_query($connect, $sql);
+
+header("Location: ../contact.php");
 
 ?>
