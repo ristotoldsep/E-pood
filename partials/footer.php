@@ -83,9 +83,9 @@
                     Liitu uudiskirjaga
                 </h4>
 
-                <form>
+                <form action="handler/newsletter.php" method="POST">
                     <div class="wrap-input1 w-full p-b-4">
-                        <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@gmail.com">
+                        <input class="input1 bg-none plh1 stext-107 cl7" type="email" name="email" placeholder="email@gmail.com">
                         <div class="focus-input1 trans-04"></div>
                     </div>
 

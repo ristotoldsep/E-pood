@@ -46,10 +46,30 @@
                     <i class="fa fa-bell-o"></i> <span>Teated</span>
                 </a>
             </li>
-            <li>
-                <a href="categories.php">
-                    <i class="fa fa-plus-square"></i> <span>Lisa kategooria</span>
+            
+            <li class="treeview">
+                <a href="newsletter.php">
+                    <i class="fa  fa-bookmark-o"></i> <span>Kategooriad</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
+                <ul class="treeview-menu">
+                    <li><a href="categorieslist.php"><i class="fa fa-bookmark"></i> Vaata kategooriaid</a></li>
+                    <li><a href="categories.php"><i class="fa fa-plus-square"></i> Lisa kategooria</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="newsletter.php">
+                    <i class="fa fa-envelope-o"></i> <span>Uudiskiri</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="newsletter.php"><i class="fa fa-address-book"></i> Liitunud kliendid</a></li>
+                    <li><a href="newslettersend.php"><i class="fa fa-share"></i> Saada uudiskiri</a></li>
+                </ul>
             </li>
             <li>
                 <a href="adminpartials/logout.php">

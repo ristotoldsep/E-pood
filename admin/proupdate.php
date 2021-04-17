@@ -66,10 +66,10 @@ $final = $results->fetch_assoc();
                                     <label for="price">Hind</label>
                                     <input type="text" class="form-control" id="price" placeholder="Hind" name="price" value="<?php echo $final['price']; ?>">
                                 </div>
-                                <img src="../<?php echo $final['picture']; ?>" alt="image" style="width:200px;height:200px;">
                                 <div class="form-group">
-                                    <label for="picture">Pilt</label>
-                                    <input type="file" id="picture" name="file" value="<?php echo $final['picture']; ?>" </div>
+                                    <label for="picture">Pilt</label><br>
+                                    <img src="../<?php echo $final['picture']; ?>" alt="image" style="width:200px;height:200px;"><br><br>
+                                    <input type="file" id="picture" name="file" value="<?php echo $final['picture']; ?>" </div><br>
                                     <div class="form-group">
                                         <label for="description">Tootekirjeldus</label>
                                         <textarea id="description" class="form-control" rows="5" placeholder="Describe your product.." name="description"><?php echo $final['description']; ?></textarea>

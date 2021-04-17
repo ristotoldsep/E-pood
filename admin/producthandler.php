@@ -25,3 +25,5 @@ $sql = "INSERT INTO products(name, price, picture, description, category_id) VAL
 $connect->query($sql);
 
 header('location:productsshow.php'); //Redirect to all products page!
+
+?>
