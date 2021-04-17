@@ -46,7 +46,7 @@
                     <i class="fa fa-bell-o"></i> <span>Teated</span>
                 </a>
             </li>
-            
+
             <li class="treeview">
                 <a href="newsletter.php">
                     <i class="fa  fa-bookmark-o"></i> <span>Kategooriad</span>
@@ -58,6 +58,11 @@
                     <li><a href="categorieslist.php"><i class="fa fa-bookmark"></i> Vaata kategooriaid</a></li>
                     <li><a href="categories.php"><i class="fa fa-plus-square"></i> Lisa kategooria</a></li>
                 </ul>
+            </li>
+            <li>
+                <a href="kliendid.php">
+                    <i class="fa fa-users"></i> <span>Kliendid</span>
+                </a>
             </li>
             <li class="treeview">
                 <a href="newsletter.php">

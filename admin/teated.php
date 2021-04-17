@@ -25,7 +25,7 @@ include("adminpartials/head.php");
             <section class="content-header">
                 <h1>
                     Töölaud
-                    <small>Kategooriad</small>
+                    <small>Teated</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="adminindex.php"><i class="fa fa-dashboard"></i> Töölaud</a></li>
