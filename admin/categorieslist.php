@@ -39,7 +39,9 @@ include("adminpartials/head.php");
 
                 <div class="row">
                     <div class="col-sm-3">
-
+                        <a href="categories.php">
+                            <button class="btn btn-success">Lisa kategooria</button>
+                        </a>
                     </div>
                     <div class="col-sm-6">
                         <div class="row">

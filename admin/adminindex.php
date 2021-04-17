@@ -132,8 +132,8 @@ include("adminpartials/head.php");
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fa fa-arrow-circle-right"></i>
+              <a href="kliendid.php" class="small-box-footer">
+                Vaata kliente  <i class="fa fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>
@@ -150,8 +150,8 @@ include("adminpartials/head.php");
               <div class="icon">
                 <i class="fa fa-bell-o"></i>
               </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fa fa-arrow-circle-right"></i>
+              <a href="teated.php" class="small-box-footer">
+                Vaata teateid  <i class="fa fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>
@@ -168,8 +168,8 @@ include("adminpartials/head.php");
               <div class="icon">
                 <i class="fa fa-users"></i>
               </div>
-              <a href="#" class="small-box-footer">
-                More info <i class="fa fa-arrow-circle-right"></i>
+              <a href="newsletter.php" class="small-box-footer">
+                Vaata liitunuid  <i class="fa fa-arrow-circle-right"></i>
               </a>
             </div>
           </div>

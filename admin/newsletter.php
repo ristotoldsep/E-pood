@@ -24,11 +24,11 @@ include("adminpartials/head.php");
             <section class="content-header">
                 <h1>
                     Töölaud
-                    <small>Töölaud</small>
+                    <small>Uudiskirjaga liitunud</small>
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-                    <li class="active">Töölaud</li>
+                    <li class="active">Uudiskiri</li>
                 </ol>
             </section>
 
@@ -78,7 +78,7 @@ include("adminpartials/head.php");
                                 </table>
 
                                 <a title="Võimalik kasutada näiteks MailChimpis" href="../handler/emailid.txt" download><i class="fa fa-download" aria-hidden="true"></i>
-                                      Ekspordi .txt fail kõikide e-mailidega</a>
+                                    Ekspordi .txt fail kõikide e-mailidega</a>
                             </div>
                             <!-- /.box-body -->
                         </div>
