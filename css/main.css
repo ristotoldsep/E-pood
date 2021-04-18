@@ -3331,3 +3331,28 @@ input.num-product::-webkit-inner-spin-button {
 
 }
 
+#valik {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgb(180, 170, 170);
+}
+
+select#omniva_select2 {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid rgb(180, 170, 170);
+}
+
+#omniva_container2 img {
+  width: 50px;
+  float: none;
+  padding: 5px;
+}
+
+td.ow_td{
+  padding: 10px 0px;
+}
+
+td.ow_td:first-child {
+  display: none;
+}

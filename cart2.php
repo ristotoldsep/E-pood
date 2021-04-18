@@ -12,6 +12,22 @@ if (!isset($_SESSION['email']) && !isset($_SESSION['password'])) {
 	</script>";
 }
 
+//Kui pole sisse logitud, suuna sisselogimislehele
+if (isset($_SESSION['cart'])) {
+
+	$quaty = count($_SESSION['cart']);
+
+	if ($quaty == 0) {
+		echo "<script>
+		window.location.href='cart.php';
+		</script>";
+	}
+} else {
+	echo "<script>
+		window.location.href='cart.php';
+		</script>";
+}
+
 /* if (empty($_SESSION['username'] AND $_SESSION['password'])) {
 	echo "<script> alert('Please Log In');
 		//window.location.href='customerforms.php';
@@ -77,15 +93,17 @@ if (isset($_SESSION['email'])) {
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
 	<!-- jquery js -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+
+	<!-- Omniva js ja css -->
+	<script type="text/javascript" src="https://www.omniva.ee/widget/widget.js"> </script>
+	<link rel="stylesheet" type="text/css" href="https://www.omniva.ee/widget/widget.css">
+
+
+
 </head>
 
 <body class="animsition">
-
-	<?php
-
-
-	?>
 
 	<header class="header-v4">
 		<?php
@@ -124,12 +142,12 @@ if (isset($_SESSION['email'])) {
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
-									<th class="column-1">Product</th>
-									<th class="column-5">Name</th>
-									<th class="column-3">Price</th>
-									<th class="column-5">Quantity</th>
+									<th class="column-1">Toode</th>
+									<th class="column-5">Nimi</th>
+									<th class="column-3">Hind</th>
+									<th class="column-5">Kogus</th>
 									<th class="column-5"></th>
-									<th class="column-3">Total</th>
+									<th class="column-3">Kokku</th>
 									<th class="column-4"></th>
 								</tr>
 								<?php
@@ -280,12 +298,6 @@ if (isset($_SESSION['email'])) {
 									Saadame kõikjale üle Eesti pakiautomaatide kaudu.
 								</p>
 
-								<strong>
-									<p class="stext-111 cl6 p-t-2">
-										Pakiautomaatide valik siia.
-									</p>
-								</strong>
-
 								<div class="p-t-15">
 									<span class="stext-112 cl8">
 										Kliendi andmed
@@ -296,13 +308,39 @@ if (isset($_SESSION['email'])) {
 											<input id="nimi" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Nimi" name="nimi" required>
 										</div>
 
-										<div class="bor8 bg0 m-b-12">
+										<!-- <div class="bor8 bg0 m-b-12">
 											<input id="address" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Aadress" name="address" required>
-										</div>
+										</div> -->
 
 										<div class="bor8 bg0 m-b-22">
 											<input id="phone" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Telefoninumber" name="phone">
 										</div>
+
+										<!-- container ID consist of "omniva_container" name with exact config id  -->
+										<div id="omniva_container2"></div>
+
+										<script>
+											var wd2 = new OmnivaWidget({
+
+												compact_mode: true, // Compact widget is not shown
+												// If enabled only a dropdown with locations will be shown
+
+												show_offices: false, // Post offices will be shown
+												// If disabled post offices will not be shown in the dropdown
+
+												custom_html: false, // Predefined HTML is activated
+												// It is allowed to create a custom HTML                                // It will be included in the container
+
+												id: 2, // Will be added to the unique element ids if 
+												// there is a need to have more than one widget
+
+												selection_value: 'lagedi' // Preselected value. (case insensitive, will be trimmed) Can be empty or entirely omitted. Optional
+											});
+
+											var maat = document.getElementById("omniva_selection_value2");
+											console.log(maat);
+										</script>
+
 										<span class="stext-112 cl8">
 											Makseviis
 										</span>
@@ -314,18 +352,11 @@ if (isset($_SESSION['email'])) {
 											</select>
 											<div class="dropDownSelect2"></div> -->
 										</div>
-
 										<select id="valik" name="payment_method">
-											<option disabled hidden selected value="bank_transfer">Makseviis</option>
-											<option value="bank_transfer">Pangaülekanne</option>
+											<option disabled hidden selected value="paypal">Makseviis</option>
 											<option value="paypal">PayPal</option>
+											<option value="bank_transfer">Pangaülekanne</option>
 										</select>
-
-										<!-- <div class="flex-w">
-											<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-												Update Totals
-											</div>
-										</div> -->
 
 								</div>
 							</div>
@@ -359,11 +390,9 @@ if (isset($_SESSION['email'])) {
 							</strong>
 						</div>
 
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" name="placeorder">
+						<button id="submitorder" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" name="placeorder">
 							Esita tellimus
 						</button>
-
-						<p id="testt">Saada</p>
 
 						<script>
 							function submitform() {
@@ -374,19 +403,14 @@ if (isset($_SESSION['email'])) {
 							let ylekanne = document.getElementById("ylekas");
 							let paypaldiv = document.getElementById("paypal-button-container");
 							let tellimusevorm = document.getElementById("tellimusevorm");
-							/* let nupp = document.getElementById("testt");
-							nupp.addEventListener("click", function() {
-								tellimusevorm.submit();
-							}); */
-							/* $("#testt").click(function() {
-								alert("lol");
-							}); */
+							let telli = document.getElementById("submitorder");
 
 							valik.addEventListener('change', () => {
 
 								console.log(valik.value);
 
 								if (valik.value == "paypal") {
+									telli.style.display = "none";
 									ylekas.style.display = "none";
 
 									// Render the PayPal button into #paypal-button-container
@@ -424,6 +448,8 @@ if (isset($_SESSION['email'])) {
 										}
 									}).render('#paypal-button-container');
 								} else {
+									telli.style.display = "block";
+
 									paypaldiv.innerHTML = "";
 
 									ylekas.style.display = "block";
@@ -439,13 +465,14 @@ if (isset($_SESSION['email'])) {
 						if (isset($_POST['placeorder']) || isset($_POST['tellimusevorm']) || isset($_POST['nimi'])) {
 							$total = $_POST['total'];
 							$phone = $_POST['phone'];
-							$address = $_POST['address'];
+							// $address = $_POST['address'];
 							$nimi = $_POST['nimi'];
 							$payment_method = $_POST['payment_method'];
 							$customer_id = $_SESSION['customer_id'];
+							$pakiautomaat = $_POST['omniva_selection_value2'];
 							// $sql = $_POST['sql'];
 
-							$sql = "INSERT INTO Orders (customer_id, address, phone, total, payment_method, nimi) VALUES ('$customer_id', '$address', '$phone', '$total', '$payment_method', '$nimi')";
+							$sql = "INSERT INTO Orders (customer_id, phone, total, payment_method, nimi, pakiautomaat) VALUES ('$customer_id', '$phone', '$total', '$payment_method', '$nimi', '$pakiautomaat')";
 
 							$connect->query($sql);
 
@@ -474,7 +501,7 @@ if (isset($_SESSION['email'])) {
 
 									window.location.href = 'index.php';
 									
-									</script>"; 
+							</script>";
 
 							// header("location: index.php");
 
