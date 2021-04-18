@@ -3,7 +3,7 @@ include("../partials/connect.php");
 
 session_start();
 
-if(isset($_POST['placeorder'])) {
+if(isset($_POST['placeorder']) || isset($_POST['nimi'])) {
     $total = $_POST['total'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
@@ -33,7 +33,9 @@ if(isset($_POST['placeorder'])) {
         $connect->query($sql3);
     }
 
-    if ($payment_method == "paypal") {
+    echo "<script>alert('HAHAHA');</script>";
+
+    /* if ($payment_method == "paypal") {
         $_SESSION['total'] = $total; //Passing the total to session variable, later passing that to Paypal
 
         header('location: paypal.php');
@@ -45,10 +47,10 @@ if(isset($_POST['placeorder'])) {
     window.location.href='../index.php';
     
     </script>";
-    }
+    } */
 
     //When order is placed, unset the session
-    unset($_SESSION['cart']);
+    // unset($_SESSION['cart']);
 }
 
 

@@ -37,8 +37,6 @@ if (isset($_SESSION['email'])) {
 	}
 }
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -78,6 +76,8 @@ if (isset($_SESSION['email'])) {
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<!--===============================================================================================-->
+	<!-- jquery js -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body class="animsition">
@@ -260,10 +260,10 @@ if (isset($_SESSION['email'])) {
 							<div class="size-209">
 								<span class="mtext-110 cl2">
 									<?php echo $total;
-									
+
 									$_SESSION['total'] = $total; //Passing the total to session variable, later passing that to Paypal
 									?> €
-									
+
 								</span>
 							</div>
 						</div>
@@ -291,17 +291,17 @@ if (isset($_SESSION['email'])) {
 										Kliendi andmed
 									</span>
 
-									<form action="cart2.php" method="POST">
+									<form id="tellimusevorm" name="tellimusevorm" action="cart2.php" method="POST">
 										<div class="bor8 bg0 m-b-12">
-											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Nimi" name="nimi">
+											<input id="nimi" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Nimi" name="nimi" required>
 										</div>
 
 										<div class="bor8 bg0 m-b-12">
-											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Aadress" name="address">
+											<input id="address" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Aadress" name="address" required>
 										</div>
 
 										<div class="bor8 bg0 m-b-22">
-											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Telefoninumber" name="phone">
+											<input id="phone" class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Telefoninumber" name="phone">
 										</div>
 										<span class="stext-112 cl8">
 											Makseviis
@@ -320,8 +320,6 @@ if (isset($_SESSION['email'])) {
 											<option value="bank_transfer">Pangaülekanne</option>
 											<option value="paypal">PayPal</option>
 										</select>
-
-
 
 										<!-- <div class="flex-w">
 											<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
@@ -365,14 +363,29 @@ if (isset($_SESSION['email'])) {
 							Esita tellimus
 						</button>
 
+						<p id="testt">Saada</p>
+
 						<script>
+							function submitform() {
+								document.forms["tellimusevorm"].submit();
+							}
+
 							let valik = document.getElementById("valik");
 							let ylekanne = document.getElementById("ylekas");
 							let paypaldiv = document.getElementById("paypal-button-container");
-
-							console.log(valik.value);
+							let tellimusevorm = document.getElementById("tellimusevorm");
+							/* let nupp = document.getElementById("testt");
+							nupp.addEventListener("click", function() {
+								tellimusevorm.submit();
+							}); */
+							/* $("#testt").click(function() {
+								alert("lol");
+							}); */
 
 							valik.addEventListener('change', () => {
+
+								console.log(valik.value);
+
 								if (valik.value == "paypal") {
 									ylekas.style.display = "none";
 
@@ -394,11 +407,21 @@ if (isset($_SESSION['email'])) {
 										onApprove: function(data, actions) {
 											return actions.order.capture().then(function(details) {
 												// Show a success message to the buyer
+												// tellimusevorm.submit();
 												alert('Tellimus edastatud!');
-												window.location.href = '../index.php';
+
+												submitform();
+
+												// window.location.href = 'index.php';
+
+												<?php
+												//When order is placed, unset the session
+												// unset($_SESSION['cart']); 
+												?>
+
+												// window.location.href = 'index.php';
 											});
 										}
-
 									}).render('#paypal-button-container');
 								} else {
 									paypaldiv.innerHTML = "";
@@ -406,22 +429,21 @@ if (isset($_SESSION['email'])) {
 									ylekas.style.display = "block";
 								}
 							})
-
 							// paypal.Buttons().render('#paypal-button-container');
 						</script>
 
 						</form>
 
 						<?php
-						
 
-						if (isset($_POST['placeorder'])) {
+						if (isset($_POST['placeorder']) || isset($_POST['tellimusevorm']) || isset($_POST['nimi'])) {
 							$total = $_POST['total'];
 							$phone = $_POST['phone'];
 							$address = $_POST['address'];
 							$nimi = $_POST['nimi'];
 							$payment_method = $_POST['payment_method'];
 							$customer_id = $_SESSION['customer_id'];
+							// $sql = $_POST['sql'];
 
 							$sql = "INSERT INTO Orders (customer_id, address, phone, total, payment_method, nimi) VALUES ('$customer_id', '$address', '$phone', '$total', '$payment_method', '$nimi')";
 
@@ -445,8 +467,18 @@ if (isset($_SESSION['email'])) {
 								$connect->query($sql3);
 							}
 
+							//When order is placed, unset the session
+							unset($_SESSION['cart']);
 
-							if ($payment_method == "paypal") {
+							echo "<script>
+
+									window.location.href = 'index.php';
+									
+									</script>"; 
+
+							// header("location: index.php");
+
+							/* 	if ($payment_method == "paypals") {
 								// $_SESSION['total'] = $total; //Passing the total to session variable, later passing that to Paypal
 
 								echo "<script>
@@ -462,10 +494,10 @@ if (isset($_SESSION['email'])) {
 								window.location.href='../index.php';
 								
 								</script>";
-							}
+							} */
 
-							//When order is placed, unset the session
-							unset($_SESSION['cart']);
+							/* //When order is placed, unset the session
+							unset($_SESSION['cart']); */
 						}
 
 						?>
