@@ -510,7 +510,7 @@ if (isset($_SESSION['email'])) {
 
 							echo "<script>
 
-									window.location.href = 'index.php';
+									window.location.href = 'arve.php?order_id=$order_id';
 									
 							</script>";
 
