@@ -35,8 +35,9 @@ if (isset($_SESSION['email'])) {
 	} else {
 		$user = mysqli_fetch_array($admin_query); //return array from db (info about the logged in user)
 	}
-
 }
+
+
 
 ?>
 
@@ -258,7 +259,11 @@ if (isset($_SESSION['email'])) {
 
 							<div class="size-209">
 								<span class="mtext-110 cl2">
-									<?php echo $total; ?> €
+									<?php echo $total;
+									
+									$_SESSION['total'] = $total; //Passing the total to session variable, later passing that to Paypal
+									?> €
+									
 								</span>
 							</div>
 						</div>
@@ -274,17 +279,19 @@ if (isset($_SESSION['email'])) {
 								<p class="stext-111 cl6 p-t-2">
 									Saadame kõikjale üle Eesti pakiautomaatide kaudu.
 								</p>
-								
-								<strong><p class="stext-111 cl6 p-t-2">
-									Pakiautomaatide valik siia.
-								</p></strong>
+
+								<strong>
+									<p class="stext-111 cl6 p-t-2">
+										Pakiautomaatide valik siia.
+									</p>
+								</strong>
 
 								<div class="p-t-15">
 									<span class="stext-112 cl8">
 										Kliendi andmed
 									</span>
 
-									<form action="handler/orderhandler.php" method="POST">
+									<form action="cart2.php" method="POST">
 										<div class="bor8 bg0 m-b-12">
 											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" placeholder="Nimi" name="nimi">
 										</div>
@@ -300,12 +307,21 @@ if (isset($_SESSION['email'])) {
 											Makseviis
 										</span>
 										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-											<select class="js-select2" name="payment_method">
+											<!-- <select id="valik" class="js-select2" name="payment_method">
+												<option disabled hidden selected value="bank_transfer">Makseviis</option>
 												<option value="bank_transfer">Pangaülekanne</option>
 												<option value="paypal">PayPal</option>
 											</select>
-											<div class="dropDownSelect2"></div>
+											<div class="dropDownSelect2"></div> -->
 										</div>
+
+										<select id="valik" name="payment_method">
+											<option disabled hidden selected value="bank_transfer">Makseviis</option>
+											<option value="bank_transfer">Pangaülekanne</option>
+											<option value="paypal">PayPal</option>
+										</select>
+
+
 
 										<!-- <div class="flex-w">
 											<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
@@ -331,10 +347,129 @@ if (isset($_SESSION['email'])) {
 							</div>
 						</div>
 						<input type="hidden" name="total" value="<?php echo $total; ?>">
+
+						<!-- Set up a container element for the button -->
+						<div id="paypal-button-container"></div>
+
+						<div id="ylekas" style="display:none;">
+							<strong>
+								<p class="stext-111 cl6 p-t-2">
+									Risto Tõldsep<br>
+									EE335353353533535<br>
+									Swedbank<br><br>
+								</p>
+							</strong>
+						</div>
+
 						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer" type="submit" name="placeorder">
 							Esita tellimus
 						</button>
+
+						<script>
+							let valik = document.getElementById("valik");
+							let ylekanne = document.getElementById("ylekas");
+							let paypaldiv = document.getElementById("paypal-button-container");
+
+							console.log(valik.value);
+
+							valik.addEventListener('change', () => {
+								if (valik.value == "paypal") {
+									ylekas.style.display = "none";
+
+									// Render the PayPal button into #paypal-button-container
+									paypal.Buttons({
+
+										// Set up the transaction
+										createOrder: function(data, actions) {
+											return actions.order.create({
+												purchase_units: [{
+													amount: {
+														value: '<?php echo $_SESSION['total']; ?>'
+													}
+												}]
+											});
+										},
+
+										// Finalize the transaction
+										onApprove: function(data, actions) {
+											return actions.order.capture().then(function(details) {
+												// Show a success message to the buyer
+												alert('Tellimus edastatud!');
+												window.location.href = '../index.php';
+											});
+										}
+
+									}).render('#paypal-button-container');
+								} else {
+									paypaldiv.innerHTML = "";
+
+									ylekas.style.display = "block";
+								}
+							})
+
+							// paypal.Buttons().render('#paypal-button-container');
+						</script>
+
 						</form>
+
+						<?php
+						
+
+						if (isset($_POST['placeorder'])) {
+							$total = $_POST['total'];
+							$phone = $_POST['phone'];
+							$address = $_POST['address'];
+							$nimi = $_POST['nimi'];
+							$payment_method = $_POST['payment_method'];
+							$customer_id = $_SESSION['customer_id'];
+
+							$sql = "INSERT INTO Orders (customer_id, address, phone, total, payment_method, nimi) VALUES ('$customer_id', '$address', '$phone', '$total', '$payment_method', '$nimi')";
+
+							$connect->query($sql);
+
+							$sql2 = "SELECT id FROM Orders ORDER BY id DESC LIMIT 1"; //Finc latest order and only 1 row!
+
+							$result = $connect->query($sql2);
+
+							$final = $result->fetch_assoc();
+
+							$order_id = $final['id'];
+
+							foreach ($_SESSION['cart'] as $key => $value) {
+								$product_id = $value['item_id'];
+
+								$quantity = $value['quantity'];
+
+								$sql3 = "INSERT INTO order_details (order_id, product_id, quantity) VALUES ('$order_id', '$product_id', '$quantity')";
+
+								$connect->query($sql3);
+							}
+
+
+							if ($payment_method == "paypal") {
+								// $_SESSION['total'] = $total; //Passing the total to session variable, later passing that to Paypal
+
+								echo "<script>
+
+									renderbuttons();
+									
+									</script>";
+							} else {
+								echo "<script>
+								
+								alert('Tellimus on esitatud!');
+
+								window.location.href='../index.php';
+								
+								</script>";
+							}
+
+							//When order is placed, unset the session
+							unset($_SESSION['cart']);
+						}
+
+						?>
+
 					</div>
 				</div>
 			</div>
@@ -430,6 +565,9 @@ if (isset($_SESSION['email'])) {
 			}
 		}
 	</script>
+
+	<!-- Include the PayPal JavaScript SDK -->
+	<script src="https://www.paypal.com/sdk/js?client-id=AYg9lS7A9y7CGmURkTYZy0P3S9y9SKNZ3GXmQkNchTMeZX9IXIfKSct1HLoV6-SVmZQcNu40wCnzYDne&currency=EUR"></script>
 
 	<!-- Footer -->
 	<?php

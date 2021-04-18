@@ -67,7 +67,7 @@ include("partials/indexhead.php"); ?>
 		<div class="container">
 			<div class="p-b-10">
 				<h3 class="ltext-103 cl5">
-					Uued produd
+					Uued tooted
 				</h3>
 			</div>
 
@@ -306,7 +306,7 @@ include("partials/indexhead.php"); ?>
 				<?php
 				// include("partials/connect.php");
 
-				$sql = "SELECT * FROM Products"; //Vali kõik tooted
+				$sql = "SELECT * FROM Products ORDER BY id DESC"; //Vali kõik tooted ja kuva 8 uuemat
 
 				$results = $connect->query($sql);
 

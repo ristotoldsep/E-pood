@@ -82,7 +82,7 @@ print_r($admin_query); */
 	// include("partials/connect.php");
 
 	// Toodete päring
-	$sql = "SELECT P.id AS prod_id, P.name AS prod_name, P.price AS price, P.picture AS picture, P.description AS description, P.category_id AS cat_id, C.name AS cat_name FROM Products P, Categories C WHERE P.category_id=C.id";
+	$sql = "SELECT P.id AS prod_id, P.name AS prod_name, P.price AS price, P.picture AS picture, P.description AS description, P.category_id AS cat_id, C.name AS cat_name FROM Products P, Categories C WHERE P.category_id=C.id ORDER BY P.id DESC";
 
 	$sql2 = "SELECT * FROM Categories";
 
@@ -370,12 +370,6 @@ print_r($admin_query); */
 
 			</div>
 
-			<!-- Load more -->
-			<!-- <div class="flex-c-m flex-w w-full p-t-45">
-				<a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
-				</a>
-			</div> -->
 		</div>
 	</div>
 

@@ -59,6 +59,8 @@
 
             <!-- Icon header -->
             <div class="wrap-icon-header flex-w flex-r-m">
+                <!-- OTSING -->
+
                 <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                     <i class="zmdi zmdi-search" title="Otsi"></i>
                 </div>
@@ -147,8 +149,8 @@
             <img src="images/icons/icon-close2.png" alt="CLOSE">
         </button>
 
-        <form action="" method="POST" class="wrap-search-header flex-w p-l-15">
-            <button class="flex-c-m trans-04">
+        <form action="search.php" method="POST" class="wrap-search-header flex-w p-l-15">
+            <button name="submit" class="flex-c-m trans-04">
                 <i class="zmdi zmdi-search"></i>
             </button>
             <input class="plh3" type="text" name="search" placeholder="Otsi toodet...">
