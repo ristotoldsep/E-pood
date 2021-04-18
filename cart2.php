@@ -279,7 +279,11 @@ if (isset($_SESSION['email'])) {
 								<span class="mtext-110 cl2">
 									<?php echo $total;
 
-									$_SESSION['total'] = $total; //Passing the total to session variable, later passing that to Paypal
+									$shipping = 3; //€
+
+									$totalwithshipping = $total + $shipping;
+
+									$_SESSION['total'] = $totalwithshipping; //Passing the total to session variable, later passing that to Paypal
 									?> €
 
 								</span>
@@ -318,6 +322,9 @@ if (isset($_SESSION['email'])) {
 
 										<!-- container ID consist of "omniva_container" name with exact config id  -->
 										<div id="omniva_container2"></div>
+										<p class="stext-111 cl6 ">
+											Transport: 3€
+										</p><br>
 
 										<script>
 											var wd2 = new OmnivaWidget({
@@ -365,25 +372,29 @@ if (isset($_SESSION['email'])) {
 						<div class="flex-w flex-t p-t-27 p-b-33">
 							<div class="size-208">
 								<span class="mtext-101 cl2">
-									Kokku:
+									Lõppsumma:
 								</span>
 							</div>
 
-							<div class="size-209 p-t-1">
+							<div class="size-208 m-l-30 p-t-1">
 								<span class="mtext-110 cl2">
-									<?php echo $total; ?> €
+									<?php echo $totalwithshipping; ?> €
 								</span>
 							</div>
 						</div>
-						<input type="hidden" name="total" value="<?php echo $total; ?>">
+						<input type="hidden" name="total" value="<?php echo $totalwithshipping; ?>">
 
 						<!-- Set up a container element for the button -->
 						<div id="paypal-button-container"></div>
 
 						<div id="ylekas" style="display:none;">
 							<strong>
+								<p class="stext-40 cl6 p-t-2">
+									Sooritage ülekanne & vajutage "Esita tellimus", misjärel võetakse tellimus töötlemisele.<br>
+								</p>
+								<hr>
 								<p class="stext-111 cl6 p-t-2">
-									Risto Tõldsep<br>
+									Kuldne Trio OÜ<br>
 									EE335353353533535<br>
 									Swedbank<br><br>
 								</p>
