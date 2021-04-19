@@ -295,14 +295,14 @@
 
 
 <!--===============================================================================================-->
-<script src="vendortest/jquery/jquery-3.2.1.min.js"></script>
+<script src="assets/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-<script src="vendortest/animsition/js/animsition.min.js"></script>
+<script src="assets/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-<script src="vendortest/bootstrap/js/popper.js"></script>
-<script src="vendortest/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/bootstrap/js/popper.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-<script src="vendortest/select2/select2.min.js"></script>
+<script src="assets/select2/select2.min.js"></script>
 <script>
     $(".js-select2").each(function() {
         $(this).select2({
@@ -312,18 +312,18 @@
     })
 </script>
 <!--===============================================================================================-->
-<script src="vendortest/daterangepicker/moment.min.js"></script>
-<script src="vendortest/daterangepicker/daterangepicker.js"></script>
+<script src="assets/daterangepicker/moment.min.js"></script>
+<script src="assets/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-<script src="vendortest/slick/slick.min.js"></script>
+<script src="assets/slick/slick.min.js"></script>
 <script src="js/slick-custom.js"></script>
 <!--===============================================================================================-->
-<script src="vendortest/parallax100/parallax100.js"></script>
+<script src="assets/parallax100/parallax100.js"></script>
 <script>
     $('.parallax100').parallax100();
 </script>
 <!--===============================================================================================-->
-<script src="vendortest/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script src="assets/MagnificPopup/jquery.magnific-popup.min.js"></script>
 <script>
     $('.gallery-lb').each(function() { // the containers for all your galleries
         $(this).magnificPopup({
@@ -337,9 +337,9 @@
     });
 </script>
 <!--===============================================================================================-->
-<script src="vendortest/isotope/isotope.pkgd.min.js"></script>
+<script src="assets/isotope/isotope.pkgd.min.js"></script>
 <!--===============================================================================================-->
-<script src="vendortest/sweetalert/sweetalert.min.js"></script>
+<script src="assets/sweetalert/sweetalert.min.js"></script>
 <script>
     $('.js-addwish-b2').on('click', function(e) {
         e.preventDefault();
@@ -376,7 +376,7 @@
     });
 </script>
 <!--===============================================================================================-->
-<script src="vendortest/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="assets/perfect-scrollbar/perfect-scrollbar.min.js"></script>
 <script>
     $('.js-pscroll').each(function() {
         $(this).css('position', 'relative');
