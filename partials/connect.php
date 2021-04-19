@@ -27,4 +27,7 @@ $query_builder = TRUE;
 // Connect to DB
 $connect = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
+// Change character set to utf8
+mysqli_set_charset($connect, "utf8");
+
 ?>
