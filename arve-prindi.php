@@ -4,23 +4,6 @@ if (!isset($_SESSION)) {
 }
 include("partials/connect.php");
 
-//Kui kasutaja on sisse logitud, määra sessioonimuutuja
-if (isset($_SESSION['email'])) {
-    $userLoggedIn = $_SESSION['email']; //Email of user
-
-    //Get user details from db
-    $user_details_query = mysqli_query($connect, "SELECT * FROM customers WHERE username='$userLoggedIn'");
-
-    $admin_query = mysqli_query($connect, "SELECT * FROM admins WHERE username='$userLoggedIn'");
-
-    //Kontrolli kas sisselogitud kasutaja on admin
-    if (mysqli_num_rows($admin_query) == 0) {
-        $user = mysqli_fetch_array($user_details_query); //return array from db (info about the logged in user)
-    } else {
-        $user = mysqli_fetch_array($admin_query); //return array from db (info about the logged in user)
-    }
-}
-
 if (isset($_GET['order_id'])) {
 
     $order_id = $_GET['order_id'];
@@ -90,35 +73,14 @@ if (isset($_GET['order_id'])) {
     <link rel="stylesheet" type="text/css" href="css/util.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <!--===============================================================================================-->
-
+    <style>
+        section.invoice {
+            border: 1px solid #f4f4f4;
+        }
+    </style>
 </head>
 
-<body class="animsition">
-
-    <header class="header-v4">
-        <?php
-
-        //Header template
-        include("partials/header.php");
-
-        ?>
-    </header>
-
-    <?php include("partials/cartmodal.php"); ?>
-
-    <!-- breadcrumb -->
-    <!-- <div class="container">
-		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
-				Home
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
-
-			<span class="stext-109 cl4">
-				Shoping Cart
-			</span>
-		</div>
-	</div> -->
+<body onload="window.print();">
 
     <div class="container">
         <!-- Content Wrapper. Contains page content -->
@@ -235,7 +197,7 @@ if (isset($_GET['order_id'])) {
                 </div> -->
                 <!-- /.col -->
                 <div class="col-sm-6">
-                    
+
                     <p class="lead">Tehingukuupäev <?php echo $tellimus['created_at']; ?></p>
 
                     <div class="table-responsive">
@@ -253,21 +215,22 @@ if (isset($_GET['order_id'])) {
                                 <td><?php echo $tellimus['total']; ?> €</td>
                             </tr>
                         </table>
-                        <hr>    
                     </div>
+                    <hr>
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                         Täname, et tellisite meie e-poest. Külastage meid jälle!
-                    </p><br>
+                    </p>
                 </div>
             </div>
             <!-- /.row -->
             <!-- this row will not appear when printing -->
             <div class="row no-print">
                 <div class="col-xs-12">
-                    <a href="arve-prindi.php?order_id=<?php echo $order_id ?>" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Prindi</a>
+                    <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Prindi</a>
+
                 </div>
             </div>
         </section>
@@ -282,12 +245,6 @@ if (isset($_GET['order_id'])) {
         </div>
     </div>
     <!-- Footer -->
-    <?php
-
-    //Footer template
-    include("partials/footer.php");
-
-    ?>
 
 </body>
 

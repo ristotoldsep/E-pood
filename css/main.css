@@ -3356,3 +3356,7 @@ td.ow_td{
 td.ow_td:first-child {
   display: none;
 }
+
+section.invoice {
+  border: 1px solid #bababa;
+}
