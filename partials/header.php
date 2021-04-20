@@ -1,3 +1,13 @@
+<?php
+$dataquery = "SELECT * FROM Companyinfo WHERE id='1'";
+
+$tulemuz = mysqli_query($connect, $dataquery);
+
+$andmed = mysqli_fetch_array($tulemuz);
+
+// print_r($andmed);
+?>
+
 <!-- Header -->
 <!-- Header desktop -->
 <div class="container-menu-desktop">
@@ -5,7 +15,7 @@
     <div class="top-bar">
         <div class="content-topbar flex-sb-m h-full container">
             <div class="left-top-bar">
-                Tasuta transport tellimusel üle 50€
+                <?php echo $andmed['reklaam'] ?>
             </div>
 
             <div class="right-top-bar flex-w h-full">
@@ -32,7 +42,7 @@
 
             <!-- Logo desktop -->
             <a href="index.php" class="logo" style="margin-right: 10px;">
-                <img src="images/icons/logo.png" width="100px" alt="IMG-LOGO">
+                <img src="<?php echo $andmed['logourl']; ?>" width="100px" alt="IMG-LOGO">
             </a>
 
             <!-- Menu desktop -->
@@ -40,7 +50,6 @@
                 <ul class="main-menu">
                     <li class="active-menu">
                         <a href="index.php">Kodu</a>
-
                     </li>
 
                     <li>
@@ -71,7 +80,6 @@
                 } else {
                     $qty = 0;
                 }
-
                 ?>
 
                 <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="<?php echo $qty; ?>">
@@ -91,7 +99,7 @@
 <div class="wrap-header-mobile">
     <!-- Logo moblie -->
     <div class="logo-mobile">
-        <a href="index.php"><img src="images/icons/logo.png" alt="IMG-LOGO"></a>
+        <a href="index.php"><img src="<?php echo $andmed['logourl']; ?>" alt="IMG-LOGO"></a>
     </div>
 
     <!-- Icon header -->
@@ -121,11 +129,37 @@
 
 <!-- Menu Mobile -->
 <div class="menu-mobile">
+    <ul class="topbar-mobile">
+        <li>
+            <div class="left-top-bar">
+                <?php echo $andmed['reklaam'] ?>
+            </div>
+        </li>
+
+        <li>
+            <div class="right-top-bar flex-w h-full">
+
+                <?php if (!empty($_SESSION['email'])) { ?>
+                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                        <?php echo $user['username']; ?>
+                    </a>
+                    <a href="handler/customerlogout.php" class="flex-c-m trans-04 p-lr-25">
+                        Logi välja
+                    </a>
+                <?php } else { ?>
+                    <a href="customerforms.php" class="flex-c-m trans-04 p-lr-25">
+                        Logi sisse
+                    </a>
+                <?php }
+                ?>
+
+            </div>
+        </li>
+    </ul>
 
     <ul class="main-menu-m">
         <li>
             <a href="index.php">Kodu</a>
-
         </li>
 
         <li>
