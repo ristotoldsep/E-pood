@@ -394,9 +394,9 @@ if (isset($_SESSION['email'])) {
 								</p>
 								<hr>
 								<p class="stext-111 cl6 p-t-2">
-									Kuldne Trio OÜ<br>
-									EE335353353533535<br>
-									Swedbank<br><br>
+									<?php echo $andmed['kontonimi']; ?><br>
+									<?php echo $andmed['kontonumber']; ?><br>
+									<?php echo $andmed['pank']; ?><br><br>
 								</p>
 							</strong>
 						</div>
