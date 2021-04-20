@@ -147,11 +147,11 @@ if (isset($_GET['order_id'])) {
                 <div class="col-sm-4 invoice-col">
                     Müüja
                     <address>
-                        <strong>Kuldne Trio OÜ</strong><br>
-                        Ravi 11, Tallinn<br>
-                        Reg. nr: 123456<br>
-                        Telefon: +372 5911 3357<br>
-                        E-post: info@epood.ee
+                        <strong><?php echo $andmed['firmanimi']; ?></strong><br>
+                        <?php echo $andmed['aadress']; ?><br>
+                        <?php echo $andmed['regnr']; ?><br>
+                        Telefon: <?php echo $andmed['telefon']; ?><br>
+                        E-post: <?php echo $andmed['email']; ?>
                     </address>
                 </div>
                 <!-- /.col -->
@@ -176,7 +176,7 @@ if (isset($_GET['order_id'])) {
                     //Pildi loogika
                     if ($tellimus['payment_method'] == "paypal") {
                         echo "Paypal ";
-                        echo '<img width="30px" src="admin/dist/img/credit/paypal2.png" alt="Paypal ">';
+                        echo '<img width="30px" src="admin/dist/img/credit/paypal2.png" alt="Paypal">';
                     } else {
                         echo "Pangaülekanne";
                     }
@@ -235,7 +235,7 @@ if (isset($_GET['order_id'])) {
                 </div> -->
                 <!-- /.col -->
                 <div class="col-sm-6">
-                    
+
                     <p class="lead">Tehingukuupäev <?php echo $tellimus['created_at']; ?></p>
 
                     <div class="table-responsive">
@@ -253,7 +253,7 @@ if (isset($_GET['order_id'])) {
                                 <td><?php echo $tellimus['total']; ?> €</td>
                             </tr>
                         </table>
-                        <hr>    
+                        <hr>
                     </div>
                 </div>
                 <!-- /.col -->

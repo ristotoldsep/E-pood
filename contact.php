@@ -85,7 +85,6 @@ if (isset($_SESSION['email'])) {
 		</h2>
 	</section>
 
-
 	<!-- Content page -->
 	<section class="bg0 p-t-50 p-b-116">
 		<div class="container">
@@ -123,9 +122,9 @@ if (isset($_SESSION['email'])) {
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
-								Ravi 11, Tallinn<br>
-								Kuldne Trio OÜ<br>
-								Reg. nr: 123456
+								<?php echo $andmed['aadress']; ?><br>
+								<?php echo $andmed['firmanimi']; ?><br>
+								<?php echo $andmed['regnr']; ?>
 							</p>
 						</div>
 					</div>
@@ -141,7 +140,7 @@ if (isset($_SESSION['email'])) {
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								+372 5911 3357
+								<?php echo $andmed['telefon']; ?>
 							</p>
 						</div>
 					</div>
@@ -157,7 +156,7 @@ if (isset($_SESSION['email'])) {
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
-								info@epood.ee
+								<?php echo $andmed['email']; ?>
 							</p>
 						</div>
 					</div>

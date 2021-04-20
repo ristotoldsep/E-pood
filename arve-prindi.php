@@ -26,6 +26,12 @@ if (isset($_GET['order_id'])) {
 
     // $tooteandmed = mysqli_fetch_array($result2); //Tooteandmed
 
+    $dataquery = "SELECT * FROM Companyinfo WHERE id='1'";
+
+    $tulemuz = mysqli_query($connect, $dataquery);
+
+    $andmed = mysqli_fetch_array($tulemuz);
+
 }
 
 ?>
@@ -109,11 +115,11 @@ if (isset($_GET['order_id'])) {
                 <div class="col-sm-4 invoice-col">
                     Müüja
                     <address>
-                        <strong>Kuldne Trio OÜ</strong><br>
-                        Ravi 11, Tallinn<br>
-                        Reg. nr: 123456<br>
-                        Telefon: +372 5911 3357<br>
-                        E-post: info@epood.ee
+                        <strong><?php echo $andmed['firmanimi']; ?></strong><br>
+                        <?php echo $andmed['aadress']; ?><br>
+                        <?php echo $andmed['regnr']; ?><br>
+                        Telefon: <?php echo $andmed['telefon']; ?><br>
+                        E-post: <?php echo $andmed['email']; ?>
                     </address>
                 </div>
                 <!-- /.col -->

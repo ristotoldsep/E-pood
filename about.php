@@ -105,7 +105,7 @@ if (isset($_SESSION['email'])) {
 						</p>
 
 						<p class="stext-113 cl6 p-b-26">
-							Küsimuste korral kontakteeruge meiega meilil info@epood.ee
+							Küsimuste korral kontakteeruge meiega meilil <strong><?php echo $andmed['email']; ?></strong>
 						</p>
 					</div>
 				</div>
