@@ -30,8 +30,6 @@ include("adminpartials/head.php");
 
         $final = $results->fetch_assoc(); //Get associative array of the query results (all records from db)
 
-       
-
         ?>
 
         <!-- Content Wrapper. Contains page content -->
@@ -86,7 +84,7 @@ include("adminpartials/head.php");
                         <p><?php echo $final['nimi']; ?></p>
                         <hr>
 
-                        <h4>Aadress: <?php echo $final['address']; ?></h4>
+                        <h4>Pakiautomaat: <?php echo $final['pakiautomaat']; ?></h4>
                         <hr>
 
                         <h4>Telefon: <?php echo $final['phone']; ?></h4>
