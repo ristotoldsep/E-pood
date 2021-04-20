@@ -32,7 +32,7 @@
 
             <!-- Logo desktop -->
             <a href="index.php" class="logo" style="margin-right: 10px;">
-                <img src="images/icons/logo.png" alt="IMG-LOGO">
+                <img src="images/icons/logo.png" width="100px" alt="IMG-LOGO">
             </a>
 
             <!-- Menu desktop -->

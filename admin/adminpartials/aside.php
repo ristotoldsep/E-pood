@@ -77,6 +77,11 @@
                 </ul>
             </li>
             <li>
+                <a href="firmaandmed.php">
+                    <i class="fa  fa-building"></i> <span>Poe andmed</span>
+                </a>
+            </li>
+            <li>
                 <a href="adminpartials/logout.php">
                     <i class="fa fa-sign-out"></i> <span>Logi välja</span>
                 </a>
