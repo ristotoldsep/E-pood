@@ -62,7 +62,7 @@ include("adminpartials/head.php");
                                                 <th>ID</th>
                                                 <th>Tellimus</th>
                                                 <th>Postitatud</th>
-                                                <th>Tegevus</th>
+                                                <th class="column-3">Tegevus</th>
                                             </tr>
                                             <?php
                                             while ($final = $results->fetch_assoc()) { ?>
@@ -77,6 +77,8 @@ include("adminpartials/head.php");
                                                     <td><?php echo $final['created_at']; ?></td>
                                                     <td><a href="orderdelete.php?del_id=<?php echo $final['id']; ?>">
                                                             <button class="btn btn-danger">Kustuta</button>
+                                                        </a><a href="../arve.php?order_id=<?php echo $final['id']; ?>">
+                                                            <button class="btn btn-success">Arve</button>
                                                         </a></td>
                                                 </tr>
 
