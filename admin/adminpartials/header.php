@@ -97,16 +97,20 @@
                 //DB connection
                 include('../partials/connect.php');
 
-                $sql = "SELECT * FROM Contact";
+                $sql = "SELECT C.*, DATEDIFF(CURRENT_TIMESTAMP, C.created_at) AS days FROM Contact C ORDER BY id DESC";
                 $kontakt = $connect->query($sql);
 
-                $sql2 = "SELECT * FROM Orders";
+                $sql2 = "SELECT O.*, DATEDIFF(CURRENT_TIMESTAMP, O.created_at) AS days FROM Orders O ORDER BY id DESC";
                 $tellimus = $connect->query($sql2);
+
+                $sql3 = "SELECT C.*, DATEDIFF(CURRENT_TIMESTAMP, C.created_at) AS days FROM Customers C ORDER BY id DESC";
+                $klient = $connect->query($sql3);
 
                 $count1 = mysqli_num_rows($kontakt);
                 $count2 = mysqli_num_rows($tellimus);
+                $count3 = mysqli_num_rows($klient);
 
-                $count = $count1 + $count2;
+                $count = $count1 + $count2 + $count3;
 
                 ?>
 
@@ -117,43 +121,36 @@
                         <span class="label label-warning"><?php echo $count; ?></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="header">Sul on <?php echo $count; ?> teadet</li>
+                        <li class="header">Sul on <?php echo $count; ?> teavitust</li>
                         <li>
 
                             <ul class="menu">
                                 <?php
-                                while ($row = mysqli_fetch_array($kontakt)) { ?>
+                                while ($kontaktid = mysqli_fetch_array($kontakt)) { ?>
                                     <li>
                                         <a href="teated.php">
-                                            <i class="fa fa-users text-aqua"></i> Teade <?php echo $row['email']; ?>-lt
+                                            <i class="fa fa-users text-aqua"></i> Teade <?php echo $kontaktid['email']; ?>-lt<br>
+                                            <small><?php echo $kontaktid['days'] ?> päeva tagasi</small>
                                         </a>
                                     </li>
                                 <?php }
 
-                                while ($rida = mysqli_fetch_array($tellimus)) { ?>
+                                while ($tellimused = mysqli_fetch_array($tellimus)) { ?>
                                     <li>
-                                        <a href="#">
-                                            <i class="fa fa-shopping-basket text-red"></i> Uus tellimus #<?php echo $rida['id']; ?>
+                                        <a href="orders.php">
+                                            <i class="fa fa-shopping-basket text-red"></i> Uus tellimus #<?php echo $tellimused['id']; ?><br>
+                                            <small><?php echo $tellimused['days'] ?> päeva tagasi</small>
                                         </a>
                                     </li>
                                 <?php }
-                                ?>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-green"></i> 5 uut klienti liitus hiljuti
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-warning text-yellow"></i> Sel kuul palju müüki
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users text-red"></i> 3 uut tellimust
-                                    </a>
-                                </li>
-
+                                while ($kliendid = mysqli_fetch_array($klient)) { ?>
+                                    <li>
+                                        <a href="kliendid.php">
+                                            <i class="fa fa-users text-green"></i> Liitus klient <?php echo $kliendid['username'] ?><br>
+                                            <small><?php echo $kliendid['days'] ?> päeva tagasi</small>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                         </li>
                         <li class="footer"><a href="#">Vaata kõiki</a></li>

@@ -75,10 +75,10 @@ include("adminpartials/head.php");
 
                                                         </a></td>
                                                     <td><?php echo $final['created_at']; ?></td>
-                                                    <td><a href="orderdelete.php?del_id=<?php echo $final['id']; ?>">
-                                                            <button class="btn btn-danger">Kustuta</button>
-                                                        </a><a href="../arve.php?order_id=<?php echo $final['id']; ?>">
+                                                    <td><a href="../arve.php?order_id=<?php echo $final['id']; ?>">
                                                             <button class="btn btn-success">Arve</button>
+                                                        </a><a href="orderdelete.php?del_id=<?php echo $final['id']; ?>">
+                                                            <button class="btn btn-danger">Kustuta</button>
                                                         </a></td>
                                                 </tr>
 
