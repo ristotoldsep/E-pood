@@ -339,11 +339,10 @@ include("partials/indexhead.php"); ?>
 								</div>
 
 								<div class="block2-txt-child2 flex-r p-t-3">
-									<a href="carthandler.php?cart_id=<?php echo $final['id']; ?>&cart_name=<?php echo $final['name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>" class="btn-addwish-b2 dis-block pos-relative js-addcart-detail">
+									<a href="carthandler.php?cart_id=<?php echo $final['id']; ?>&cart_name=<?php echo $final['name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>&cart_quantity=1" class="btn-addwish-b2 dis-block pos-relative js-addcart-detail">
 										<!-- <img class="icon-heart1 dis-block trans-04" src="images/icons/icon-heart-01.png" alt="ICON">
 										<img class="icon-heart2 dis-block trans-04 ab-t-l" src="images/icons/icon-heart-02.png" alt="ICON"> -->
 										<i class="fa fa-cart-plus" aria-hidden="true" data-tooltip="Lisa korvi" title="Lisa korvi"></i>
-
 									</a>
 								</div>
 							</div>

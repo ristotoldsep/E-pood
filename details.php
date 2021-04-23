@@ -210,20 +210,19 @@ $final = mysqli_fetch_array($results);
 
 							<div class=" p-b-10">
 								<div class="size-204 respon6-next">
+								<form action="carthandler.php" method="POST">
+
+									<input type="hidden" name="cart_id" value="<?php echo $final['prod_id']; ?>">
+									<input type="hidden" name="cart_name" value="<?php echo $final['prod_name']; ?>">
+									<input type="hidden" name="cart_price" value="<?php echo $final['price']; ?>">
+									<input type="hidden" name="cart_picture" value="<?php echo $final['picture']; ?>">
+
 									<div class="wrap-num-product flex-w m-r-20 m-tb-10">
 										<div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-minus"></i>
 										</div>
 
-										<input id="quantity" class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
-
-										<!-- <script>
-											function getdata() {
-												let txtOne = document.getElementById('quantity').value;
-												// Do Something 
-												console.log(txtOne);
-											}
-										</script> -->
+										<input class="mtext-104 cl3 txt-center num-product" type="number" name="cart_quantity" value="1">
 
 										<div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
 											<i class="fs-16 zmdi zmdi-plus"></i>
@@ -232,9 +231,13 @@ $final = mysqli_fetch_array($results);
 									
 
 									<!-- Lisa korvi -->
-									<button class=" stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart" onclick="location.href='carthandler.php?cart_id=<?php echo $final['prod_id']; ?>&cart_name=<?php echo $final['prod_name']; ?>&cart_price=<?php echo $final['price']; ?>&cart_picture=<?php echo $final['picture']; ?>'">
+									<!-- <button class=" stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart" onclick="location.href='carthandler.php?cart_id=<?php //echo $final['prod_id']; ?>&cart_name=<?php //echo $final['prod_name']; ?>&cart_price=<?php //echo $final['price']; ?>&cart_picture=<?php //echo $final['picture']; ?>'">
+										Lisa korvi
+									</button> -->
+									<button type="submit" class="stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail" name="addtocart">
 										Lisa korvi
 									</button>
+								</form>
 								</div>
 							</div>
 						</div>

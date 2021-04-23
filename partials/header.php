@@ -129,7 +129,7 @@ $andmed = mysqli_fetch_array($tulemuz);
 
 <!-- Menu Mobile -->
 <div class="menu-mobile">
-    <ul class="topbar-mobile">
+    <ul class="topbar-mobile  text-center">
         <li>
             <div class="left-top-bar">
                 <?php echo $andmed['reklaam'] ?>
@@ -157,7 +157,7 @@ $andmed = mysqli_fetch_array($tulemuz);
         </li>
     </ul>
 
-    <ul class="main-menu-m">
+    <ul class="main-menu-m text-center">
         <li>
             <a href="index.php">Kodu</a>
         </li>
